@@ -1,0 +1,115 @@
+@import "./base.css";
+
+.header {
+    border-bottom: 1px solid var(--border-light);
+    box-shadow: 0 0.1rem 0 rgb(0 0 0 / 2%);
+}
+
+.nav {
+    display: grid;
+    grid-template-columns: 12rem 2fr auto auto auto;
+    grid-gap: 1.6rem;
+    align-items: center;
+}
+
+
+.navBrand {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    height: 3rem;
+}
+
+.logoTitle {
+    display: inline-flex;
+    font-size: 2rem;
+    font-weight: 600;
+    margin-left: .4rem;
+    text-transform: uppercase;
+    color: var(--text-primary);
+}
+
+.searchForm {
+    margin: 0 auto;
+}
+
+.formField {
+    font-size: 1rem;
+    line-height: 1.4rem;
+    border-radius: .3rem;
+    color: var(--text-secondary);
+    border: 1px solid var(--border-light);
+    padding: .8rem;
+    flex: 1;
+    align-self: center;
+    width: 40rem;
+}
+
+.formField:focus {
+    outline: none;
+    border: 1px solid var(--primary);
+}
+
+.navWrap {
+    display: flex;
+    flex-flow: column wrap;
+}
+
+.icons {
+    height: 1.4rem;
+    margin: 0 auto;
+    display: block;
+}
+
+.iconText {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding-top: .3rem;
+}
+
+
+.sectionTitle {
+    font-size: 2rem;
+    border-bottom: 1px solid var(--primary);
+    padding-bottom: .6rem;
+    font-weight: 600;
+}
+
+.innerSection {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 1.6rem;
+    padding: 2rem 0
+}
+
+.categories {
+    position: relative;
+    overflow: hidden;
+}
+
+.overlay {
+    position: relative;
+}
+
+.sectionImage {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: .3rem;
+    margin-bottom: 1rem;
+}
+
+.overlayText {
+    position: relative;
+    font-size: 1.8rem;
+    color: var(--text-primary);
+    font-weight: 600;
+    margin: 0 0 1rem 0
+}
+
+.categoryThree .sectionImage {
+    height: 512px;
+}
