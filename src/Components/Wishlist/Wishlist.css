@@ -1,0 +1,23 @@
+.wishlistBody {
+    text-align: center;
+    margin: 10rem auto;
+    display: block;
+}
+
+.wishlistTitle {
+    font-size: 2rem;
+    color: var(--dark);
+    margin: 2rem 0 0 0;
+    font-weight: 600;
+}
+
+.wishlistSubtitle {
+    font-size: 1.2rem;
+    max-width: 23rem;
+    margin: 0.4rem auto 2rem auto;
+    color: var(--text-secondary);
+}
+
+.secondaryIcon {
+    height: 10rem;
+}

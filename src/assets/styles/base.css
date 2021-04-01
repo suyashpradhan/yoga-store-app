@@ -12,6 +12,8 @@
     --border-light: #E8E7E9;
     --dark: #2c292f;
     --white: #ffffff;
+    --green: #388e3c;
+    --yellow: #ff9f00
 }
 
 * {
@@ -96,14 +98,14 @@ ol {
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: #d6dee1;
+    background-color: var(--border-light);
     border-radius: 20px;
     border: 6px solid transparent;
     background-clip: content-box;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background-color: #a8bbbf;
+    background-color: var(--dark);
 }
 
 pre {
@@ -183,14 +185,4 @@ table {
 .table-inner-bordered td:not(:last-child),
 .table-inner-bordered th:not(:last-child) {
     border-right: 1px solid #dadfe1;
-}
-
-.card {
-    position: relative;
-    margin: 2rem 0;
-    padding: 1rem;
-    color: rgba(0, 0, 0, .85);
-    background-color: #fff;
-    border-radius: .4rem;
-    border: 1px solid rgba(0, 0, 0, .2);
 }

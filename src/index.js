@@ -2,15 +2,15 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { App } from "./App";
 import { setupMockServer } from "./mock-server/server.js";
-import { BrowserRouter as Router } from "react-router-dom";
+import { CartContextProvider } from "./Context";
 
 setupMockServer();
 
 ReactDOM.render(
   <React.StrictMode>
-    <Router>
+    <CartContextProvider>
       <App />
-    </Router>
+    </CartContextProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );

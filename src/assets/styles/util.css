@@ -170,7 +170,8 @@
 }
 
 .wrapper-fluid {
-    max-width: 77.25rem;
+    min-width: 978px;
+    max-width: 1480px;
     padding-left: 1rem;
     padding-right: 1rem;
     margin: 0 auto;

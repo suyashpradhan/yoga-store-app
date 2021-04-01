@@ -1,23 +1,21 @@
 import React from "react";
-import axios from "axios";
-import { Navbar } from "./Components/Navbar.jsx";
-import { Banner } from "./Components/Banner.jsx";
-import { Categories } from "./Components/Categories/Categories.jsx";
+import { Home } from "./Components/Home";
+import { Header } from "./Components/Header";
+import { Wishlist } from "./Components/Wishlist";
+import { Bag } from "./Components/Bag";
+import { ProductsListing } from "./Components/ProductsListing";
+import { useStateContext } from "./Context";
 import "./assets/styles/main.css";
 
 export const App = () => {
-  const demo = async () => {
-    const response = await axios.get("/api/products");
-    console.log(response.data);
-  };
-
+  const { state } = useStateContext();
   return (
     <>
-      <Navbar />
-      <Banner />
-      <Categories />
-
-      <button onClick={() => demo()}>Button</button>
+      <Header />
+      {state.route === "home" && <Home />}
+      {state.route === "wishlist" && <Wishlist />}
+      {state.route === "bag" && <Bag />}
+      {state.route === "products" && <ProductsListing />}
     </>
   );
 };
