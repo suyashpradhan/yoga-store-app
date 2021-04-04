@@ -21,6 +21,10 @@ export const reducer = (state, action) => {
       return {
         itemsInWishlist: action.payload,
       };
+    case "ADD_TO_BAG":
+      return {
+        itemsInBag: action.payload,
+      };
 
     default:
       return state;

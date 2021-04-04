@@ -46,7 +46,7 @@ export const ProductsListing = () => {
 
           <div className="products">
             {state.products.map((product) => {
-              return <Product product={product} />;
+              return <Product key={product.id} product={product} />;
             })}
           </div>
         </main>

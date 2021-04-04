@@ -4,6 +4,8 @@ import { useStateContext } from "../../Context";
 import mats from "../../assets/images/mats.jpg";
 import blanket from "../../assets/images/blanket.jpg";
 import clothing from "../../assets/images/clothing.jpg";
+import { ProductsListing } from "../ProductsListing/ProductsListing";
+import { Link, Switch, Route } from "react-router-dom";
 import "./Home.css";
 
 export const Home = () => {
@@ -12,11 +14,15 @@ export const Home = () => {
   return (
     <>
       <section className="banner">
-        <button
-          onClick={() => dispatch({ type: "ROUTE", payload: "products" })}
-        >
-          <img src={banner} alt="yoga_life" className="banner img-fluid"></img>
-        </button>
+        <Link to="/products">
+          <button onClick={() => dispatch({ payload: "products" })}>
+            <img
+              src={banner}
+              alt="yoga_life"
+              className="banner img-fluid"
+            ></img>
+          </button>
+        </Link>
       </section>
       <section className="sectionCategories pT4 pB4">
         <div className="wrapper-fluid">

@@ -5,7 +5,6 @@ import { useStateContext } from "../../Context";
 
 export const Wishlist = () => {
   const { state, dispatch } = useStateContext();
-  console.log(state);
 
   return (
     <div className="wrapper wrapper-fluid">

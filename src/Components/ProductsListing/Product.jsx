@@ -6,7 +6,7 @@ export const Product = ({ product }) => {
   const { dispatch } = useStateContext();
 
   return (
-    <div className="card">
+    <div className="card" key={product.id}>
       <div className="cardTop">
         <img src={product.image} alt={product.name} className="cardImage" />
       </div>
@@ -29,22 +29,26 @@ export const Product = ({ product }) => {
         <h3 className="productPrice">Rs {product.price}</h3>
         {product.ratings <= 3 ? (
           <span className="productRating productRatingYellow">
-            <i class="far fa-star productIcon"></i>
+            <i className="far fa-star productIcon"></i>
             {product.ratings}
           </span>
         ) : (
           <span className="productRating productRatingGreen">
-            <i class="far fa-star productIcon"></i>
+            <i className="far fa-star productIcon"></i>
             {product.ratings}
           </span>
         )}
-
         <div className="cardFooter block">
           <button
-            class="button button-secondary"
-            onClick={() => dispatch({ type: "ADD_TO_BAG", payload: product })}
+            className="button button-secondary"
+            onClick={() =>
+              dispatch({
+                type: "ADD_TO_BAG",
+                payload: product,
+              })
+            }
           >
-            ADD TO CART
+            ADD TO BAG
           </button>
         </div>
       </div>

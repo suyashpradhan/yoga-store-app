@@ -4,6 +4,7 @@ import logo from "../../assets/images/logo.svg";
 import wishlist from "../../assets/images/wishlist.svg";
 import bag from "../../assets/images/bag.svg";
 import { useStateContext } from "../../Context";
+import { Link, Route, Switch } from "react-router-dom";
 
 export const Header = () => {
   const { state, dispatch } = useStateContext();
@@ -12,32 +13,32 @@ export const Header = () => {
     <>
       <header className="header pT1 pB1">
         <nav className="nav wrapper-fluid">
-          <button onClick={() => dispatch({ type: "ROUTE", payload: "home" })}>
+          <Link
+            to="/"
+            onClick={() => dispatch({ type: "ROUTE", payload: "home" })}
+          >
             <div className="navBrand">
               <img src={logo} alt="yoga_life" className="logo"></img>
-              <h2 className="logoTitle">YogaLife</h2>
+              <h2 className="logoTitle">YogaStore</h2>
             </div>
-          </button>
-          {/* <form className="searchForm">
-            <input
-              type="text"
-              placeholder="Search for items, brand etc..."
-              className="formField"
-            ></input>
-          </form> */}
+          </Link>
           <div className="navWrap wishlist">
-            <button
+            <Link
+              to="/wishlist"
               onClick={() => dispatch({ type: "ROUTE", payload: "wishlist" })}
             >
               <img src={wishlist} alt="wishlist" className="icons"></img>
               <h2 className="iconText">Wishlist</h2>
-            </button>
+            </Link>
           </div>
           <div className="navWrap bag">
-            <button onClick={() => dispatch({ type: "ROUTE", payload: "bag" })}>
+            <Link
+              to="/bag"
+              onClick={() => dispatch({ type: "ROUTE", payload: "bag" })}
+            >
               <img src={bag} alt="wishlist" className="icons"></img>
               <h2 className="iconText">Bag</h2>
-            </button>
+            </Link>
           </div>
         </nav>
       </header>

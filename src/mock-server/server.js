@@ -8,8 +8,6 @@ export const setupMockServer = () => {
     },
     models: {
       product: Model,
-      bag: Model,
-      wishlist: Model,
     },
 
     routes() {
@@ -23,18 +21,6 @@ export const setupMockServer = () => {
     seeds(server) {
       database.forEach((product) => {
         server.create("product", {
-          ...product,
-        });
-      });
-
-      database.forEach((product) => {
-        server.create("bag", {
-          ...product,
-        });
-      });
-
-      database.forEach((product) => {
-        server.create("wishlist", {
           ...product,
         });
       });

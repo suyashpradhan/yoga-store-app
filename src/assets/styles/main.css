@@ -97,7 +97,7 @@
 }
 
 .sectionImage {
-    height: 100%;
+    height: 512px;
     width: 100%;
     object-fit: cover;
     border-radius: .3rem;
@@ -106,7 +106,7 @@
 
 .overlayText {
     position: relative;
-    font-size: 1.8rem;
+    font-size: 1.4rem;
     color: var(--text-primary);
     font-weight: 600;
     margin: 0 0 1rem 0

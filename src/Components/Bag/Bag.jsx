@@ -4,8 +4,7 @@ import EmptyBag from "../../assets/images/empty-bag.svg";
 import { useStateContext } from "../../Context";
 
 export const Bag = () => {
-  const { dispatch } = useStateContext();
-
+  const { state, dispatch } = useStateContext();
   return (
     <div className="wrapper wrapper-fluid">
       <div className="wishlistBody">
@@ -26,8 +25,8 @@ export const Bag = () => {
         >
           ADD ITEMS FROM WISHLIST
         </button>
-
-        {/* <h1 className="wishlistTitle">My Wishlist (2)</h1> */}
+        {/*         <h1 className="wishlistTitle">My Bag {state.itemsInBag.length}</h1>
+         */}{" "}
       </div>
     </div>
   );
