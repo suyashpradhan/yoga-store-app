@@ -4,8 +4,7 @@ import { useStateContext } from "../../Context";
 import mats from "../../assets/images/mats.jpg";
 import blanket from "../../assets/images/blanket.jpg";
 import clothing from "../../assets/images/clothing.jpg";
-import { ProductsListing } from "../ProductsListing/ProductsListing";
-import { Link, Switch, Route } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./Home.css";
 
 export const Home = () => {
@@ -33,9 +32,11 @@ export const Home = () => {
                 <img src={mats} alt="mats" className="sectionImage"></img>
                 <h3 className="overlayText">Yoga Mats</h3>
               </div>
-              <button className="button button-secondary block">
-                SHOP NOW
-              </button>
+              <Link to="/yoga-mats">
+                <button className="button button-secondary block">
+                  SHOP NOW
+                </button>
+              </Link>
             </div>
             <div className="categories categoryTwo">
               <div className="overlay">

@@ -14,8 +14,6 @@ export const setupMockServer = () => {
       this.namespace = "api";
       this.timing = 2000;
       this.resource("products");
-      this.resource("bags");
-      this.resource("wishlists");
     },
 
     seeds(server) {

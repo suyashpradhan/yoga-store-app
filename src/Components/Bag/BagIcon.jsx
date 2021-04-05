@@ -8,7 +8,7 @@ export const BagIcon = (props) => {
   return (
     <div className="cardFooter block">
       <button
-        class="button button-secondary"
+        className="button button-secondary"
         onClick={() =>
           dispatch({ type: "ADD_TO_BAG", payload: props.product, route: "BAG" })
         }

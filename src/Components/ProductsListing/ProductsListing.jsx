@@ -7,7 +7,6 @@ import { useStateContext } from "../../Context";
 
 export const ProductsListing = () => {
   const { state, dispatch } = useStateContext();
-
   useEffect(() => {
     (async () => {
       try {
@@ -19,7 +18,7 @@ export const ProductsListing = () => {
         dispatch({ type: "FAILED_DATA" });
       }
     })();
-  }, [dispatch]);
+  }, []);
 
   return (
     <div className="wrapper-fluid">

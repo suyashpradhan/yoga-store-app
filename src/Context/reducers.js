@@ -1,29 +1,26 @@
+export const initialState = {
+  products: [],
+  isLoading: true,
+  itemsInWishlist: [],
+  itemsInBag: [],
+};
+
 export const reducer = (state, action) => {
   switch (action.type) {
-    case "ROUTE":
-      return {
-        ...state,
-        route: action.payload,
-      };
     case "SHOW_PRODUCTS":
       return {
         ...state,
         isLoading: false,
         products: action.payload,
       };
-    case "FAILED_DATA":
-      return {
-        ...state,
-        isLoading: true,
-        products: [],
-      };
-    case "ADD_TO_WISHLIST":
-      return {
-        itemsInWishlist: action.payload,
-      };
+
     case "ADD_TO_BAG":
       return {
-        itemsInBag: action.payload,
+        ...state,
+        itemsInBag: [
+          ...state.itemsInBag,
+          { ...action.payload, productQuantity: 1, isInCart: true },
+        ],
       };
 
     default:

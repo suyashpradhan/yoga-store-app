@@ -6,6 +6,7 @@ import { Home } from "./Components/Home";
 import { ProductsListing } from "./Components/ProductsListing";
 import { Wishlist } from "./Components/Wishlist";
 import { Bag } from "./Components/Bag";
+import { Mats } from "./Components/Categories/Mats";
 
 export const App = () => {
   return (
@@ -23,6 +24,9 @@ export const App = () => {
         </Route>
         <Route exact path="/bag">
           <Bag />
+        </Route>
+        <Route exact path="/yoga-mats">
+          <Mats />
         </Route>
       </Switch>
     </>

@@ -3,7 +3,19 @@ import wishlist from "../../assets/images/wishlist.svg";
 import { useStateContext } from "../../Context";
 
 export const Product = ({ product }) => {
-  const { dispatch } = useStateContext();
+  const {
+    state: { itemsInBag },
+    dispatch,
+  } = useStateContext();
+
+  const itemExist = (product) => {
+    return itemsInBag.find((item) => item.id === product.id);
+  };
+
+  const addItemsToBag = (e, product) => {
+    e.preventDefault();
+    dispatch({ type: "ADD_TO_BAG", payload: product });
+  };
 
   return (
     <div className="card" key={product.id}>
@@ -16,12 +28,7 @@ export const Product = ({ product }) => {
             <h1 className="productName">{product.name}</h1>
             <h2 className="productCategory">{product.category}</h2>
           </div>
-          <button
-            className="iconWrap"
-            onClick={() =>
-              dispatch({ type: "ADD_TO_WISHLIST", payload: product })
-            }
-          >
+          <button className="iconWrap">
             <img src={wishlist} alt="" className="cardIcon" />
           </button>
         </div>
@@ -39,17 +46,17 @@ export const Product = ({ product }) => {
           </span>
         )}
         <div className="cardFooter block">
-          <button
-            className="button button-secondary"
-            onClick={() =>
-              dispatch({
-                type: "ADD_TO_BAG",
-                payload: product,
-              })
-            }
-          >
-            ADD TO BAG
-          </button>
+          {itemExist(product) ? (
+            <button className="button button-primary">GO TO BAG</button>
+          ) : (
+            <button
+              type="button"
+              className="button button-secondary"
+              onClick={(e) => addItemsToBag(e, product)}
+            >
+              ADD TO BAG
+            </button>
+          )}
         </div>
       </div>
     </div>

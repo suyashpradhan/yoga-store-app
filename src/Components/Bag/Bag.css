@@ -1,17 +1,23 @@
-.BagBody {
+.bagBody {
     text-align: center;
     margin: 10rem auto;
     display: block;
 }
 
-.BagTitle {
+.bagMainTitle {
     font-size: 2rem;
     color: var(--dark);
     margin: 2rem 0 0 0;
     font-weight: 600;
 }
 
-.BagSubtitle {
+.bagMainTitle span {
+    color: var(--text-secondary) !important;
+    font-weight: 300 !important;
+    font-size: 1.2rem !important;
+}
+
+.bagSubTitle {
     font-size: 1.2rem;
     max-width: 23rem;
     margin: 0.4rem auto 2rem auto;
@@ -20,4 +26,17 @@
 
 .secondaryIcon {
     height: 10rem;
+}
+
+.bagRow {
+    display: grid;
+    grid-template-columns: 1fr 20rem;
+    grid-gap: .6rem;
+    align-items: stretch;
+    margin: 4rem 0;
+}
+
+.bagItem {
+    border: 1px solid var(--border-light);
+    border-radius: .2rem;
 }
