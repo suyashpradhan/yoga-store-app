@@ -4,12 +4,12 @@ import EmptyBag from "../../assets/images/empty-bag.svg";
 import { useStateContext } from "../../Context";
 import { BagCard } from "./BagCard";
 import { PriceDetails } from "./PriceDetails";
+import { Link } from "react-router-dom";
 
 export const Bag = () => {
   const {
     state: { itemsInBag },
   } = useStateContext();
-  console.log(itemsInBag);
 
   return (
     <div className="wrapper wrapper-fluid">
@@ -31,9 +31,11 @@ export const Bag = () => {
             <p className="bagSubTitle">
               There is nothing in your bag. Let's add some items
             </p>
-            <button className="button button-secondary">
-              ADD ITEMS FROM WISHLIST
-            </button>
+            <Link to="/wishlist">
+              <button className="button button-secondary">
+                ADD ITEMS FROM WISHLIST
+              </button>
+            </Link>
           </>
         )}
       </div>

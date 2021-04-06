@@ -256,6 +256,14 @@
     text-align: center;
 }
 
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
 /*Grid*/
 
 .row {
@@ -582,4 +590,8 @@
     .xl-12 {
         flex: 0 0 100%;
     }
+}
+
+.w-100 {
+    width: 100%;
 }

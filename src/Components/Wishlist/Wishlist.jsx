@@ -2,6 +2,7 @@ import React from "react";
 import "./Wishlist.css";
 import EmptyWishlist from "../../assets/images/empty-wishlist.svg";
 import { useStateContext } from "../../Context";
+import { Link } from "react-router-dom";
 
 export const Wishlist = () => {
   const { state, dispatch } = useStateContext();
@@ -18,14 +19,9 @@ export const Wishlist = () => {
         <p className="wishlistSubtitle">
           Add items that you like to your wishlist.
         </p>
-        <button
-          onClick={() => {
-            dispatch({ type: "ROUTE", payload: "products" });
-          }}
-          className="button button-secondary"
-        >
-          Continue Shopping
-        </button>
+        <Link to="/products">
+          <button className="button button-secondary">Continue Shopping</button>
+        </Link>
 
         {/* <h1 className="wishlistTitle">My Wishlist (2)</h1> */}
       </div>
