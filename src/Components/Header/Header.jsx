@@ -1,13 +1,16 @@
 import React from "react";
-import "./header.css";
+import "./Header.css";
 import logo from "../../assets/images/logo.svg";
 import wishlist from "../../assets/images/wishlist.svg";
 import bag from "../../assets/images/bag.svg";
 import { useStateContext } from "../../Context";
-import { Link, Route, Switch } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export const Header = () => {
-  const { state, dispatch } = useStateContext();
+  const {
+    state: { itemsInBag },
+    dispatch,
+  } = useStateContext();
 
   return (
     <>
@@ -37,7 +40,14 @@ export const Header = () => {
               onClick={() => dispatch({ type: "ROUTE", payload: "bag" })}
             >
               <img src={bag} alt="wishlist" className="icons"></img>
-              <h2 className="iconText">Bag</h2>
+              <h2 className="iconText">
+                Bag
+                {itemsInBag.length >= 1 && (
+                  <span className="roundedBadge badgeActive">
+                    {itemsInBag.length}
+                  </span>
+                )}
+              </h2>
             </Link>
           </div>
         </nav>

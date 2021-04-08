@@ -52,6 +52,23 @@ export const reducer = (state, action) => {
         ),
       };
 
+    case "ADD_TO_WISHLIST":
+      return {
+        ...state,
+        itemsInWishlist: [
+          ...state.itemsInWishlist,
+          { ...action.payload, isInWishlist: true },
+        ],
+      };
+
+    case "REMOVE_FROM_WISHLIST":
+      return {
+        ...state,
+        itemsInWishlist: state.itemsInWishlist.filter(
+          (product) => product.id !== action.payload.id
+        ),
+      };
+
     default:
       return state;
   }

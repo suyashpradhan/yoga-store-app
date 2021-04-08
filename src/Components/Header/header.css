@@ -1,3 +1,132 @@
+@import "../../assets/styles/base.css";
+
+.header {
+    border-bottom: 1px solid var(--border-light);
+    box-shadow: 0 0.1rem 0 rgb(0 0 0 / 2%);
+}
+
+.nav {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    grid-gap: 1.6rem;
+    align-items: center;
+}
+
+
+.navBrand {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    height: 3rem;
+}
+
+.logoTitle {
+    display: inline-flex;
+    font-size: 2rem;
+    font-weight: 600;
+    margin-left: .4rem;
+    text-transform: uppercase;
+    color: var(--text-primary);
+}
+
+.searchForm {
+    margin: 0 auto;
+    width: 100%;
+}
+
+
+.navWrap {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    margin: 0 0 0 1rem;
+}
+
+.icons {
+    height: 1.4rem;
+    margin: 0 auto;
+    display: block;
+}
+
+.bag {
+    position: relative;
+}
+
+.iconText {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding-top: .3rem;
+}
+
+.roundedBadge {
+    white-space: nowrap;
+    text-align: center;
+    line-height: 18px;
+    padding: 0 4px;
+    height: 20px;
+    width: 20px;
+    position: absolute;
+    border-radius: 50%;
+    font-size: 12px;
+    color: #fff;
+    left: 20px;
+    z-index: 9999;
+    top: -6px;
+    font-weight: 900;
+}
+
+
+.badgeActive {
+    background-color: var(--secondary);
+    border: 1px solid var(--secondary);
+}
+
+.sectionTitle {
+    font-size: 2rem;
+    border-bottom: 1px solid var(--primary);
+    padding-bottom: .6rem;
+    font-weight: 600;
+}
+
+.innerSection {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 1.6rem;
+    padding: 2rem 0
+}
+
+.categories {
+    position: relative;
+    overflow: hidden;
+}
+
+.overlay {
+    position: relative;
+}
+
+.sectionImage {
+    height: 512px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: .3rem;
+    margin-bottom: 1rem;
+}
+
+.overlayText {
+    position: relative;
+    font-size: 1.4rem;
+    color: var(--text-primary);
+    font-weight: 600;
+    margin: 0 0 1rem 0
+}
+
+.categoryThree .sectionImage {
+    height: 512px;
+}
+
 button {
     background: transparent;
     border: none;

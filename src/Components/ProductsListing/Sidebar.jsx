@@ -54,25 +54,25 @@ export const Sidebar = () => {
           <div className="sidebarLists">
             <input type="checkbox" value="mats"></input>
             <label htmlFor="">
-              <i className="far fa-star productIcon"></i>& above
+              4 <i className="far fa-star productIcon"></i>& above
             </label>
           </div>
           <div className="sidebarLists">
             <input type="checkbox" value="blankets"></input>
             <label htmlFor="">
-              <i className="far fa-star productIcon"></i>& above
+              3 <i className="far fa-star productIcon"></i>& above
             </label>
           </div>
           <div className="sidebarLists">
             <input type="checkbox" value="clothing"></input>
             <label htmlFor="">
-              <i className="far fa-star productIcon"></i>& above
+              2 <i className="far fa-star productIcon"></i>& above
             </label>
           </div>
           <div className="sidebarLists">
             <input type="checkbox" value="clothing"></input>
             <label htmlFor="">
-              <i className="far fa-star productIcon"></i>& above
+              1 <i className="far fa-star productIcon"></i>& above
             </label>
           </div>
         </div>

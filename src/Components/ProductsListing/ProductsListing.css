@@ -128,7 +128,6 @@ label {
     font-size: 1.2rem;
     font-weight: 600;
     line-height: 1.4;
-    margin-bottom: .6rem;
     color: var(--dark);
 }
 
@@ -139,15 +138,27 @@ label {
 }
 
 .iconWrap {
-    background-color: #eee;
+    background-color: #f9f9f9;
     padding: 1rem;
     border-radius: 100%;
+    transition: all 100ms ease-in;
 }
 
 .cardIcon {
     height: 1.4rem;
     cursor: pointer;
     vertical-align: bottom;
+}
+
+.cardIcon-sm {
+    height: 1rem;
+    margin-left: .6rem;
+    cursor: pointer;
+    vertical-align: text-top;
+}
+
+.iconWrap:hover {
+    transform: scale(1.1);
 }
 
 .productPrice {
@@ -164,11 +175,11 @@ label {
 
 .productRating {
     display: inline-block;
-    color: var(--white);
+    color: var(--text-secondary);
     padding: .2rem .8rem .2rem .8rem;
     border-radius: .2rem;
-    font-size: .9rem;
-    background-color: var(--green);
+    font-size: 1rem;
+    border: 1px solid var(--border-light);
     margin: .6rem 0 1rem 0;
 }
 
@@ -177,6 +188,7 @@ label {
 }
 
 .productRatingYellow {
+    fill: var(--yellow);
     background-color: var(--yellow);
 }
 
