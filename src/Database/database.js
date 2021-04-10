@@ -3,7 +3,7 @@ import uuid from "react-uuid";
 
 faker.seed(0);
 
-export const database = [...Array(2)].map((id) => ({
+export const database = [...Array(25)].map((id) => ({
   id: uuid(),
   name: faker.commerce.productName(),
   image: faker.random.image(),

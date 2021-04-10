@@ -1,24 +1,42 @@
-import React, { useEffect } from "react";
-import axios from "axios";
+import React from "react";
 import { Sidebar } from "./Sidebar";
 import { Product } from "./Product";
 import "./ProductsListing.css";
 import { useStateContext } from "../../Context";
+import { Sort } from "./Sort";
 
 export const ProductsListing = () => {
-  const { state, dispatch } = useStateContext();
-  useEffect(() => {
-    (async () => {
-      try {
-        const {
-          data: { products },
-        } = await axios.get("/api/products");
-        dispatch({ type: "SHOW_PRODUCTS", payload: products });
-      } catch (error) {
-        dispatch({ type: "FAILED_DATA" });
-      }
-    })();
-  }, []);
+  const {
+    state: {
+      products,
+      sortFilterStates: { inStock, fastDelivery, sortBy },
+    },
+  } = useStateContext();
+
+  const getSortedData = (productList, sortBy) => {
+    if (sortBy === "PRICE_HIGH_TO_LOW") {
+      return [...productList].sort((a, b) => b.price - a.price);
+    }
+    if (sortBy === "PRICE_LOW_TO_HIGH") {
+      return [...productList].sort((a, b) => a.price - b.price);
+    }
+    return productList;
+  };
+
+  function getFilteredData(productList, filterType) {
+    return productList
+      .filter(({ inStock }) => (filterType.inStock ? true : inStock))
+      .filter(({ fastDelivery }) =>
+        filterType.fastDelivery ? fastDelivery : true
+      );
+  }
+
+  const sortedData = getSortedData(products, sortBy);
+
+  const filteredData = getFilteredData(sortedData, {
+    inStock,
+    fastDelivery,
+  });
 
   return (
     <div className="wrapper-fluid">
@@ -26,25 +44,20 @@ export const ProductsListing = () => {
         <Sidebar />
         <main className="mainSection">
           <div className="mainTopSection mT4 flex j-space-between a-items-center">
-            {state.isLoading ? (
+            {/* {state.isLoading ? (
               <h2 className="sectionTopTitle">Data Loading...</h2>
             ) : (
               <h2 className="sectionTopTitle ">
                 All Products
                 <span> (Showing {state.products.length} products)</span>
               </h2>
-            )}
-
-            <select name="" id="" className="sortSelect">
-              <option value="new">What's New</option>
-              <option value="new">Popularity</option>
-              <option value="new">Price: High to Low</option>
-              <option value="new">Price: Low to High</option>
-            </select>
+            )} */}
+            <div className="sort">
+              <Sort />
+            </div>
           </div>
-
           <div className="products">
-            {state.products.map((product) => {
+            {filteredData.map((product) => {
               return <Product key={product.id} product={product} />;
             })}
           </div>

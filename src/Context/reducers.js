@@ -69,6 +69,32 @@ export const reducer = (state, action) => {
         ),
       };
 
+    case "SORT":
+      return {
+        ...state,
+        sortFilterStates: {
+          ...state.sortFilterStates,
+          sortBy: action.payload,
+        },
+      };
+
+    case "INCLUDE_OUT_OF_STOCK":
+      return {
+        ...state,
+        sortFilterStates: {
+          ...state.sortFilterStates,
+          inStock: !state.sortFilterStates.inStock,
+        },
+      };
+    case "FAST_DELIVERY":
+      return {
+        ...state,
+        sortFilterStates: {
+          ...state.sortFilterStates,
+          fastDelivery: !state.sortFilterStates.fastDelivery,
+        },
+      };
+
     default:
       return state;
   }
