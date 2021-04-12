@@ -53,20 +53,13 @@ export const Product = ({ product }) => {
 
         <h3 className="productPrice">Rs {product.price}</h3>
         <span className="productRating">
-          {product.ratings} / 5
+          {product.ratings} / 5.0
           <img src={starIcon} alt="ratings" className="cardIcon-sm"></img>
         </span>
         <div className="cardFooter block">
           {itemExist(product) ? (
             <Link to="/bag">
-              <button
-                onClick={() =>
-                  dispatch({ type: "ADD_TO_BAG", payload: product })
-                }
-                className="button button-primary"
-              >
-                GO TO BAG
-              </button>
+              <button className="button button-primary">GO TO BAG</button>
             </Link>
           ) : (
             <button

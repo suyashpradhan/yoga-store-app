@@ -1,16 +1,13 @@
 import React from "react";
-import { Sidebar } from "./Sidebar";
 import { Product } from "./Product";
 import "./ProductsListing.css";
 import { useStateContext } from "../../Context";
 import { Sort } from "./Sort";
+import { Sidebar } from "../Sidebar/";
 
 export const ProductsListing = () => {
   const {
-    state: {
-      products,
-      sortFilterStates: { inStock, fastDelivery, sortBy },
-    },
+    state: { products, sortBy, fastDelivery, inStock, isPopular },
   } = useStateContext();
 
   const getSortedData = (productList, sortBy) => {
@@ -28,14 +25,15 @@ export const ProductsListing = () => {
       .filter(({ inStock }) => (filterType.inStock ? true : inStock))
       .filter(({ fastDelivery }) =>
         filterType.fastDelivery ? fastDelivery : true
-      );
+      )
+      .filter(({ isPopular }) => (filterType.isPopular ? isPopular : true));
   }
 
   const sortedData = getSortedData(products, sortBy);
-
   const filteredData = getFilteredData(sortedData, {
     inStock,
     fastDelivery,
+    isPopular,
   });
 
   return (
@@ -44,14 +42,14 @@ export const ProductsListing = () => {
         <Sidebar />
         <main className="mainSection">
           <div className="mainTopSection mT4 flex j-space-between a-items-center">
-            {/* {state.isLoading ? (
+            {filteredData.isLoading ? (
               <h2 className="sectionTopTitle">Data Loading...</h2>
             ) : (
               <h2 className="sectionTopTitle ">
                 All Products
-                <span> (Showing {state.products.length} products)</span>
+                <span> (Showing {filteredData.length} products)</span>
               </h2>
-            )} */}
+            )}
             <div className="sort">
               <Sort />
             </div>

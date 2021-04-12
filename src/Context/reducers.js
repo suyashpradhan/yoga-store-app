@@ -72,27 +72,35 @@ export const reducer = (state, action) => {
     case "SORT":
       return {
         ...state,
-        sortFilterStates: {
-          ...state.sortFilterStates,
-          sortBy: action.payload,
-        },
+        sortBy: action.payload,
       };
 
     case "INCLUDE_OUT_OF_STOCK":
       return {
         ...state,
-        sortFilterStates: {
-          ...state.sortFilterStates,
-          inStock: !state.sortFilterStates.inStock,
-        },
+        inStock: !state.inStock,
       };
+
     case "FAST_DELIVERY":
       return {
         ...state,
-        sortFilterStates: {
-          ...state.sortFilterStates,
-          fastDelivery: !state.sortFilterStates.fastDelivery,
-        },
+        fastDelivery: !state.fastDelivery,
+      };
+
+    case "POPULAR":
+      return {
+        ...state,
+        isPopular: !state.isPopular,
+      };
+
+    case "CLEAR_FILTER":
+      return {
+        ...state,
+        inStock: false,
+        fastDelivery: false,
+        sortBy: null,
+        isNewest: true,
+        isPopular: false,
       };
 
     default:

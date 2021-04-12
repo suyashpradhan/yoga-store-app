@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import axios from "axios";
 import { Header } from "./Components/Header";
 import { Switch, Route } from "react-router-dom";
 import { Home } from "./Components/Home";
@@ -7,8 +8,20 @@ import { Wishlist } from "./Components/Wishlist";
 import { Bag } from "./Components/Bag";
 import { Mats } from "./Components/Categories/Mats";
 import { Toast } from "./Components/Toast/Toast";
+import { useStateContext } from "./Context/context";
 
 export const App = () => {
+  const { dispatch } = useStateContext();
+
+  useEffect(() => {
+    (async () => {
+      const {
+        data: { products },
+      } = await axios.get("/api/products");
+      dispatch({ type: "SHOW_PRODUCTS", payload: products });
+    })();
+  }, []);
+
   return (
     <>
       <Header />
@@ -29,6 +42,7 @@ export const App = () => {
           <Mats />
         </Route>
       </Switch>
+
       <Toast type="SUCCESS" interval={2000} />
     </>
   );
