@@ -27,7 +27,10 @@ export const Product = ({ product }) => {
       <div className="cardBody">
         <div className="cardTitleRow">
           <div>
-            <h1 className="productName">{product.name}</h1>
+            <h1 className="productName">
+              <span style={{ marginRight: "0.2rem" }}>{product.brand}</span>
+              {product.name}
+            </h1>
             <h2 className="productCategory">{product.category}</h2>
           </div>
           {itemsInWishlistExists(product) ? (
@@ -52,6 +55,8 @@ export const Product = ({ product }) => {
         </div>
 
         <h3 className="productPrice">Rs {product.price}</h3>
+        <h4 className="actualPrice">Rs {product.actualPrice}</h4>
+        <h4 className="offer">{product.offer} % </h4>
         <span className="productRating">
           {product.ratings} / 5.0
           <img src={starIcon} alt="ratings" className="cardIcon-sm"></img>
@@ -71,6 +76,13 @@ export const Product = ({ product }) => {
             </button>
           )}
         </div>
+        {/* <div className="outOfStock">
+          <h1 className="outOfStockText">
+            Out of
+            <br />
+            stock
+          </h1>
+        </div> */}
       </div>
     </div>
   );

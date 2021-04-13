@@ -52,6 +52,7 @@
     margin: 1rem 0;
     border-radius: 3px;
     border-radius: .2rem;
+
     border: 1px solid var(--border-light);
 }
 
@@ -79,15 +80,15 @@
 }
 
 .productName {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
+    margin-bottom: .4rem;
     font-weight: 600;
-    line-height: 1.4;
-    color: var(--dark);
+    color: var(--dark)
 }
 
 .productCategory {
     color: var(--text-secondary);
-    font-size: 1.1rem;
+    font-size: 1rem;
     line-height: 1.4;
 }
 
@@ -117,8 +118,25 @@
 
 .productPrice {
     font-size: 1.4rem;
-    font-weight: 600;
-    color: var(--text-primary);
+    font-weight: 700;
+    color: var(--secondary);
+    display: inline-block;
+}
+
+.actualPrice {
+    font-size: 1.1rem;
+    font-weight: 400;
+    margin-left: .6rem;
+    color: var(--text-secondary);
+    display: inline-block;
+    text-decoration: line-through;
+}
+
+.offer {
+    font-size: 1rem;
+    color: var(--primary);
+    display: inline-block;
+    margin-left: .6rem;
 }
 
 .cardFooter {
@@ -154,4 +172,21 @@
 .cardFooter button {
     width: 100%;
     margin: 0;
+}
+
+.outOfStock {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+}
+
+.outOfStockText {
+    font-size: .75rem;
+    text-align: center;
+    background-color: var(--dark);
+    border-radius: 100%;
+    padding: .8rem .5rem;
+    color: var(--white);
+    height: 3.2rem;
+    width: 3.2rem;
 }

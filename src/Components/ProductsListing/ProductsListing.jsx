@@ -7,14 +7,14 @@ import { Sidebar } from "../Sidebar/";
 
 export const ProductsListing = () => {
   const {
-    state: { products, sortBy, fastDelivery, inStock, isPopular },
+    state: { products, sortBy, inStock, brand },
   } = useStateContext();
 
   const getSortedData = (productList, sortBy) => {
-    if (sortBy === "PRICE_HIGH_TO_LOW") {
+    if (sortBy === "high_to_low") {
       return [...productList].sort((a, b) => b.price - a.price);
     }
-    if (sortBy === "PRICE_LOW_TO_HIGH") {
+    if (sortBy === "low_to_high") {
       return [...productList].sort((a, b) => a.price - b.price);
     }
     return productList;
@@ -23,17 +23,13 @@ export const ProductsListing = () => {
   function getFilteredData(productList, filterType) {
     return productList
       .filter(({ inStock }) => (filterType.inStock ? true : inStock))
-      .filter(({ fastDelivery }) =>
-        filterType.fastDelivery ? fastDelivery : true
-      )
-      .filter(({ isPopular }) => (filterType.isPopular ? isPopular : true));
+      .filter(({ brand }) => (filterType.brand ? true : brand));
   }
 
   const sortedData = getSortedData(products, sortBy);
   const filteredData = getFilteredData(sortedData, {
     inStock,
-    fastDelivery,
-    isPopular,
+    brand,
   });
 
   return (
@@ -42,17 +38,11 @@ export const ProductsListing = () => {
         <Sidebar />
         <main className="mainSection">
           <div className="mainTopSection mT4 flex j-space-between a-items-center">
-            {filteredData.isLoading ? (
-              <h2 className="sectionTopTitle">Data Loading...</h2>
-            ) : (
-              <h2 className="sectionTopTitle ">
-                All Products
-                <span> (Showing {filteredData.length} products)</span>
-              </h2>
-            )}
-            <div className="sort">
-              <Sort />
-            </div>
+            <h2 className="sectionTopTitle ">
+              All Products
+              <span> (Showing {filteredData.length} products)</span>
+            </h2>
+            <Sort />
           </div>
           <div className="products">
             {filteredData.map((product) => {

@@ -43,7 +43,7 @@ export const App = () => {
         </Route>
       </Switch>
 
-      <Toast type="SUCCESS" interval={2000} />
+      {/* <Toast type="SUCCESS" interval={2000} /> */}
     </>
   );
 };

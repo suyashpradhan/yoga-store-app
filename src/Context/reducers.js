@@ -69,7 +69,13 @@ export const reducer = (state, action) => {
         ),
       };
 
-    case "SORT":
+    case "HIGH_TO_LOW":
+      return {
+        ...state,
+        sortBy: action.payload,
+      };
+
+    case "LOW_TO_HIGH":
       return {
         ...state,
         sortBy: action.payload,
@@ -81,26 +87,11 @@ export const reducer = (state, action) => {
         inStock: !state.inStock,
       };
 
-    case "FAST_DELIVERY":
-      return {
-        ...state,
-        fastDelivery: !state.fastDelivery,
-      };
-
-    case "POPULAR":
-      return {
-        ...state,
-        isPopular: !state.isPopular,
-      };
-
     case "CLEAR_FILTER":
       return {
         ...state,
         inStock: false,
-        fastDelivery: false,
         sortBy: null,
-        isNewest: true,
-        isPopular: false,
       };
 
     default:

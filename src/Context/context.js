@@ -11,9 +11,8 @@ export const CartContextProvider = ({ children }) => {
     itemsInBag: [],
     inStock: false,
     fastDelivery: false,
-    sortBy: null,
-    isNewest: true,
-    isPopular: false,
+    brand: [],
+    sortBy: "",
   });
 
   return (
