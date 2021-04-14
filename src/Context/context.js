@@ -10,9 +10,11 @@ export const CartContextProvider = ({ children }) => {
     itemsInWishlist: [],
     itemsInBag: [],
     inStock: false,
-    fastDelivery: false,
-    brand: [],
     sortBy: "",
+    filters: {
+      brand: [],
+      category: [],
+    },
   });
 
   return (

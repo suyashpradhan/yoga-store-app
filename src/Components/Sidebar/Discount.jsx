@@ -1,26 +1,22 @@
 import React from "react";
+import { useStateContext } from "../../Context/";
+import { discount } from "../../Database/database";
 
 export const Discount = () => {
+  const { state, dispatch } = useStateContext();
+
   return (
     <div className="sidebarSection border-none">
       <h2 className="sidebarTitle">Discount</h2>
       <div className="sidebarCollection">
-        <div className="sidebarLists">
-          <input type="checkbox" value="mats"></input>
-          <label htmlFor="">20% Discount</label>
-        </div>
-        <div className="sidebarLists">
-          <input type="checkbox" value="blankets"></input>
-          <label htmlFor="">30% Discount</label>
-        </div>
-        <div className="sidebarLists">
-          <input type="checkbox" value="clothing"></input>
-          <label htmlFor="">50% Discount</label>
-        </div>
-        <div className="sidebarLists">
-          <input type="checkbox" value="clothing"></input>
-          <label htmlFor="">70% Discount</label>
-        </div>
+        {discount.map((discount) => {
+          return (
+            <div className="sidebarLists" key={discount}>
+              <input type="checkbox"></input>
+              <label htmlFor="">{discount} % Discount</label>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

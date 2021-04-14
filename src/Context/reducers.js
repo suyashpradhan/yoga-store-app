@@ -87,6 +87,11 @@ export const reducer = (state, action) => {
         inStock: !state.inStock,
       };
 
+    case "FILTER_BY_CATEGORY":
+      return {
+        ...state,
+      };
+
     case "CLEAR_FILTER":
       return {
         ...state,
