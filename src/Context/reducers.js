@@ -3,8 +3,14 @@ export const reducer = (state, action) => {
     case "SHOW_PRODUCTS":
       return {
         ...state,
-        isLoading: false,
         products: action.payload,
+      };
+
+    case "SHOW_SINGLE_PRODUCT":
+      return {
+        ...state,
+        isLoading: false,
+        singleProduct: action.payload,
       };
 
     case "ADD_TO_BAG":
@@ -52,20 +58,23 @@ export const reducer = (state, action) => {
         ),
       };
 
-    case "ADD_TO_WISHLIST":
+    case "ADD_WISHLIST_ITEM":
       return {
         ...state,
-        itemsInWishlist: [
-          ...state.itemsInWishlist,
-          { ...action.payload, isInWishlist: true },
-        ],
+        itemsInWishlist: state.itemsInWishlist.concat(action.payload),
       };
 
-    case "REMOVE_FROM_WISHLIST":
+    case "SET_WISHLIST":
+      return {
+        ...state,
+        itemsInWishlist: action.payload,
+      };
+
+    case "DELETE_WISHLIST_ITEM":
       return {
         ...state,
         itemsInWishlist: state.itemsInWishlist.filter(
-          (product) => product.id !== action.payload.id
+          (product) => product.id !== action.payload._id
         ),
       };
 

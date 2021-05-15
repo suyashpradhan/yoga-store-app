@@ -1,16 +1,12 @@
-import React, { useReducer, createContext, useContext } from "react";
+import React, { createContext, useContext, useReducer } from "react";
 import { toastReducer } from "./toast-reducer";
-import uuid from "react-uuid";
 
-export const ToastContext = createContext();
+const ToastContext = createContext();
 
 export const ToastContextProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(toastReducer, [
-    {
-      id: uuid(),
-      message: "Products added",
-    },
-  ]);
+  const [state, dispatch] = useReducer(toastReducer, {
+    toasts: [],
+  });
 
   return (
     <ToastContext.Provider value={{ state, dispatch }}>

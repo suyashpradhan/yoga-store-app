@@ -1,31 +1,17 @@
-import React, { useEffect } from "react";
-import axios from "axios";
 import { Header } from "./Components/Header";
 import { Switch, Route } from "react-router-dom";
 import { Home } from "./Components/Home";
 import { ProductsListing } from "./Components/ProductsListing";
 import { Wishlist } from "./Components/Wishlist";
 import { Bag } from "./Components/Bag";
-import { Mats } from "./Components/Categories/Mats";
-import { Toast } from "./Components/Toast/Toast";
-import { useStateContext } from "./Context/context";
+import ProductDetails from "./Pages/ProductDetails/ProductDetails";
+import { ToastContainer } from "./Components/Toast";
 
 export const App = () => {
-  const { dispatch } = useStateContext();
-
-  useEffect(() => {
-    (async () => {
-      const response = await axios.get(
-        "https://apiyogastore.suyashpradhan.repl.co/products"
-      );
-      console.log(response.data[0]);
-      dispatch({ type: "SHOW_PRODUCTS", payload: response.data });
-    })();
-  }, []);
-
   return (
     <>
       <Header />
+      <ToastContainer />
       <Switch>
         <Route exact path="/products">
           <ProductsListing />
@@ -39,8 +25,8 @@ export const App = () => {
         <Route exact path="/bag">
           <Bag />
         </Route>
-        <Route exact path="/yoga-mats">
-          <Mats />
+        <Route exact path="/products/:_id">
+          <ProductDetails />
         </Route>
       </Switch>
     </>

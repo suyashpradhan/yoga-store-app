@@ -6,6 +6,7 @@ export const CartContext = createContext();
 export const CartContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, {
     products: [],
+    singleProduct: "",
     isLoading: true,
     itemsInWishlist: [],
     itemsInBag: [],

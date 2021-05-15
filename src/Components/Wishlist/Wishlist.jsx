@@ -10,6 +10,8 @@ export const Wishlist = () => {
     state: { itemsInWishlist },
   } = useStateContext();
 
+  console.log(itemsInWishlist);
+
   return (
     <div className="wrapper wrapper-fluid">
       <div className="wishlistBody">

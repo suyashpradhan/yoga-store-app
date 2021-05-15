@@ -1,22 +1,52 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import wishlist from "../../assets/images/wishlist.svg";
 import wishlistFilled from "../../assets/images/wishlist-filled.svg";
 import starIcon from "../../assets/images/star.svg";
 import { useStateContext } from "../../Context";
+import axios from "axios";
+import { useToastHook } from "../../CustomHooks/useToast";
 
 export const Product = ({ product }) => {
+  const toast = useToastHook(4000);
   const {
-    state: { itemsInBag, itemsInWishlist },
+    state: { itemsInWishlist },
     dispatch,
   } = useStateContext();
 
-  const itemExist = (product) => {
-    return itemsInBag.find((item) => item.id === product.id);
+  const ifItemsInWishlistExists = (product) => {
+    return itemsInWishlist.find((item) => item.id === product._id);
   };
 
-  const itemsInWishlistExists = (product) => {
-    return itemsInWishlist.find((item) => item.id === product.id);
+  const wishlistPostData = async (product) => {
+    try {
+      const { _id } = product;
+      const postData = await axios.post(
+        "https://apiyogastore.suyashpradhan.repl.co/wishlist",
+        { id: _id }
+      );
+      console.log(postData);
+      if (postData.status === 201) {
+        dispatch({ type: "ADD_WISHLIST_ITEM", payload: postData });
+        toast("error", "Added to the wishlist");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const wishlistDeleteData = async (product) => {
+    try {
+      const { _id } = product;
+      const deletedId = await axios.delete(
+        `https://apiyogastore.suyashpradhan.repl.co/wishlist/${_id}`
+      );
+      if (deletedId.status === 204) {
+        dispatch({ type: "DELETE_WISHLIST_ITEM", payload: deletedId });
+        toast("error", "Removed Item from Wishlist");
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -27,9 +57,11 @@ export const Product = ({ product }) => {
       <h4 className={product.inStock ? "normalText" : "overlayText"}>
         Out Of Stock
       </h4>
-      <div className="cardTop">
-        <img src={product.image} alt={product.name} className="cardImage" />
-      </div>
+      <Link to={`/products/${product._id}`}>
+        <div className="cardTop">
+          <img src={product.image} alt={product.name} className="cardImage" />
+        </div>
+      </Link>
       <div className="cardBody">
         <div className="cardTitleRow">
           <div>
@@ -39,21 +71,17 @@ export const Product = ({ product }) => {
             </h1>
             <h2 className="productCategory">{product.category}</h2>
           </div>
-          {itemsInWishlistExists(product) ? (
+          {ifItemsInWishlistExists(product) ? (
             <button
               className="iconWrap"
-              onClick={() =>
-                dispatch({ type: "REMOVE_FROM_WISHLIST", payload: product })
-              }
+              onClick={() => wishlistDeleteData(product)}
             >
               <img src={wishlistFilled} alt="" className="cardIcon" />
             </button>
           ) : (
             <button
               className="iconWrap"
-              onClick={() =>
-                dispatch({ type: "ADD_TO_WISHLIST", payload: product })
-              }
+              onClick={() => wishlistPostData(product)}
             >
               <img src={wishlist} alt="" className="cardIcon" />
             </button>

@@ -51,6 +51,7 @@
     border-radius: 3px;
     border-radius: .2rem;
     border: 1px solid var(--border-light);
+    cursor: pointer;
 }
 
 .overlayCard {
@@ -219,4 +220,15 @@
     color: var(--white);
     height: 3.2rem;
     width: 3.2rem;
+}
+
+.loaderRow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    left: 18rem;
+    width: calc(100% - 4rem);
+    position: absolute;
+    top: 5.1rem;
 }
