@@ -6,12 +6,17 @@ export const CartContext = createContext();
 export const CartContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, {
     products: [],
-    singleProduct: "",
-    isLoading: true,
     itemsInWishlist: [],
     itemsInBag: [],
-    inStock: false,
     sortBy: "",
+    filters: {
+      includeOutOfStock: false,
+      isYogaAssured: false,
+      filterByCategories: [],
+      filterByBrands: [],
+      filterByRatings: [],
+      filterByDiscounts: [],
+    },
   });
 
   return (

@@ -1,24 +1,24 @@
 import React from "react";
 import { useStateContext } from "../../Context";
-import { categories } from "../../exports";
+import { discounts } from "../../exports";
 
-export const Categories = () => {
+export const Discounts = () => {
   const { state, dispatch } = useStateContext();
   return (
     <div className="sidebarSection border-none">
-      <h2 className="sidebarTitle">Categories</h2>
+      <h2 className="sidebarTitle">Discounts</h2>
       <div className="sidebarCollection">
-        {categories.map((category) => {
+        {discounts.map((discount) => {
           return (
-            <div className="sidebarLists" key={category}>
+            <div className="sidebarLists" key={discount}>
               <input
                 type="checkbox"
-                checked={state.filters.filterByCategories.includes(category)}
+                checked={state.filters.filterByDiscounts.includes(discount)}
                 onChange={() => {
-                  dispatch({ type: "FILTER_BY_CATEGORIES", payload: category });
+                  dispatch({ type: "FILTER_BY_DISCOUNTS", payload: discount });
                 }}
               ></input>
-              <label>{category}</label>
+              <label>{discount} % or more</label>
             </div>
           );
         })}

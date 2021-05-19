@@ -1,15 +1,28 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Bag.css";
 import EmptyBag from "../../assets/images/empty-bag.svg";
 import { useStateContext } from "../../Context";
 import { BagCard } from "./BagCard";
 import { PriceDetails } from "./PriceDetails";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 export const Bag = () => {
   const {
     state: { itemsInBag },
+    dispatch,
   } = useStateContext();
+
+  console.log(itemsInBag);
+
+  useEffect(() => {
+    (async () => {
+      const response = await axios.get(
+        `https://apiyogastore.suyashpradhan.repl.co/cart`
+      );
+      dispatch({ type: "SET_BAG", payload: response.data });
+    })();
+  }, [dispatch]);
 
   return (
     <div className="wrapper wrapper-fluid">

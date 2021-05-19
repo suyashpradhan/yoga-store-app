@@ -9,9 +9,12 @@ export const Availability = () => {
       <div className="sidebarLists">
         <input
           type="checkbox"
-          checked={state.inStock}
+          checked={state.filters.includeOutOfStock}
           onChange={() => {
-            dispatch({ type: "INCLUDE_OUT_OF_STOCK" });
+            dispatch({
+              type: "INCLUDE_OUT_OF_STOCK",
+              payload: !state.filters.includeOutOfStock,
+            });
           }}
         ></input>
         <label htmlFor="">Include Out of Stock</label>

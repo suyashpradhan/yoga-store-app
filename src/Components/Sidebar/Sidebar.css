@@ -41,3 +41,9 @@ label {
 .link {
     font-size: .9rem !important;
 }
+
+.filterIcons {
+    font-size: 1rem;
+    vertical-align: baseline;
+    color: #333;
+}

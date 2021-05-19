@@ -6,21 +6,21 @@ export const reducer = (state, action) => {
         products: action.payload,
       };
 
-    case "SHOW_SINGLE_PRODUCT":
-      return {
-        ...state,
-        isLoading: false,
-        singleProduct: action.payload,
-      };
-
     case "ADD_TO_BAG":
       return {
         ...state,
         itemsInBag: [
           ...state.itemsInBag,
-          { ...action.payload, productQuantity: 1, isInCart: true },
+          { ...action.payload, quantity: 1, isInCart: true },
         ],
       };
+
+    case "SET_BAG":
+      return {
+        ...state,
+        itemsInBag: action.payload,
+      };
+
     case "INCREMENT_QTY":
       return {
         ...state,
@@ -61,7 +61,7 @@ export const reducer = (state, action) => {
     case "ADD_WISHLIST_ITEM":
       return {
         ...state,
-        itemsInWishlist: state.itemsInWishlist.concat(action.payload),
+        itemsInWishlist: [...state.itemsInWishlist, action.payload],
       };
 
     case "SET_WISHLIST":
@@ -74,7 +74,7 @@ export const reducer = (state, action) => {
       return {
         ...state,
         itemsInWishlist: state.itemsInWishlist.filter(
-          (product) => product.id !== action.payload._id
+          (product) => product._id !== action.payload._id
         ),
       };
 
@@ -93,19 +93,104 @@ export const reducer = (state, action) => {
     case "INCLUDE_OUT_OF_STOCK":
       return {
         ...state,
-        inStock: !state.inStock,
+        filters: { ...state.filters, includeOutOfStock: action.payload },
       };
 
-    case "FILTER_BY_CATEGORY":
-      return {
-        ...state,
-      };
+    case "FILTER_BY_CATEGORIES":
+      return state.filters.filterByCategories.includes(action.payload)
+        ? {
+            ...state,
+            filters: {
+              ...state.filters,
+              filterByCategories: state.filters.filterByCategories.filter(
+                (category) => category !== action.payload
+              ),
+            },
+          }
+        : {
+            ...state,
+            filters: {
+              ...state.filters,
+              filterByCategories: state.filters.filterByCategories.concat(
+                action.payload
+              ),
+            },
+          };
+
+    case "FILTER_BY_BRANDS":
+      return state.filters.filterByBrands.includes(action.payload)
+        ? {
+            ...state,
+            filters: {
+              ...state.filters,
+              filterByBrands: state.filters.filterByBrands.filter(
+                (brand) => brand !== action.payload
+              ),
+            },
+          }
+        : {
+            ...state,
+            filters: {
+              ...state.filters,
+              filterByBrands: state.filters.filterByBrands.concat(
+                action.payload
+              ),
+            },
+          };
+
+    case "FILTER_BY_DISCOUNTS":
+      return state.filters.filterByDiscounts.includes(action.payload)
+        ? {
+            ...state,
+            filters: {
+              ...state.filters,
+              filterByDiscounts: state.filters.filterByDiscounts.filter(
+                (discount) => discount !== action.payload
+              ),
+            },
+          }
+        : {
+            ...state,
+            filters: {
+              ...state.filters,
+              filterByDiscounts: state.filters.filterByDiscounts.concat(
+                action.payload
+              ),
+            },
+          };
+    case "FILTER_BY_RATINGS":
+      return state.filters.filterByRatings.includes(action.payload)
+        ? {
+            ...state,
+            filters: {
+              ...state.filters,
+              filterByRatings: state.filters.filterByRatings.filter(
+                (rating) => rating !== action.payload
+              ),
+            },
+          }
+        : {
+            ...state,
+            filters: {
+              ...state.filters,
+              filterByRatings: state.filters.filterByRatings.concat(
+                action.payload
+              ),
+            },
+          };
 
     case "CLEAR_FILTER":
       return {
         ...state,
-        inStock: false,
         sortBy: null,
+        filters: {
+          includeOutOfStock: false,
+          isYogaAssured: false,
+          filterByCategories: [],
+          filterByBrands: [],
+          filterByDiscounts: [],
+          filterByRatings: [],
+        },
       };
 
     default:

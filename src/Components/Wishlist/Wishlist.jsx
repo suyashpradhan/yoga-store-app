@@ -1,14 +1,29 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { WishlistCard } from "./WishlistCard";
 import "./Wishlist.css";
 import EmptyWishlist from "../../assets/images/empty-wishlist.svg";
 import { useStateContext } from "../../Context";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 export const Wishlist = () => {
   const {
     state: { itemsInWishlist },
+    dispatch,
   } = useStateContext();
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const response = await axios.get(
+          "https://apiyogastore.suyashpradhan.repl.co/wishlist"
+        );
+        dispatch({ type: "SET_WISHLIST", payload: response.data });
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  }, [dispatch]);
 
   console.log(itemsInWishlist);
 

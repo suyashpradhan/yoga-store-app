@@ -10,24 +10,6 @@ export const WishlistCard = () => {
     dispatch,
   } = useStateContext();
 
-  useEffect(() => {
-    (async () => {
-      try {
-        const response = await axios.get(
-          "https://apiyogastore.suyashpradhan.repl.co/wishlist"
-        );
-        if (response.status === 200) {
-          dispatch({
-            type: "SET_WISHLIST",
-            payload: response.data,
-          });
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    })();
-  }, []);
-
   return (
     <>
       <h1 className="wishlistTitle">
@@ -38,23 +20,23 @@ export const WishlistCard = () => {
           return (
             <>
               <div className="card">
-                <div class="cardTop">
+                <div className="cardTop">
                   <img
                     src={product.image}
                     alt={product.name}
-                    class="cardImage"
+                    className="cardImage"
                   ></img>
                 </div>
-                <div class="cardBody">
-                  <h1 class="productName">{product.name}</h1>
-                  <h2 class="productCategory">{product.category}</h2>
-                  <span class="productRating">
+                <div className="cardBody">
+                  <h1 className="productName">{product.name}</h1>
+                  <h2 className="productCategory">{product.category}</h2>
+                  <span className="productRating">
                     3 / 5.0
-                    <img src={Star} alt="ratings" class="cardIcon-sm" />
+                    <img src={Star} alt="ratings" className="cardIcon-sm" />
                   </span>
 
-                  <div class="cardFooter flex j-space-between a-items-center">
-                    <button type="button" class="button button-secondary">
+                  <div className="cardFooter flex j-space-between a-items-center">
+                    <button type="button" className="button button-secondary">
                       MOVE TO BAG
                     </button>
                   </div>

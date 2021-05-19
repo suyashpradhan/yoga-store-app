@@ -17,7 +17,7 @@ export const PriceDetails = () => {
   const totalPrice = itemsPrice + taxPrice;
 
   return (
-    <div class="bagPrice">
+    <div className="bagPrice">
       <div className="bagSummary">
         <h1 className="bagSummaryTitle">Price Details</h1>
         <div className="bagSummaryWrapper">
