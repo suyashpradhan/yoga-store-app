@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import { WishlistCard } from "./WishlistCard";
-import "./Wishlist.css";
+import { WishlistCard } from "../../Components/Wishlist/WishlistCard";
+import "../../Components/Wishlist/Wishlist.css";
 import EmptyWishlist from "../../assets/images/empty-wishlist.svg";
 import { useStateContext } from "../../Context";
 import { Link } from "react-router-dom";
@@ -11,6 +11,8 @@ export const Wishlist = () => {
     state: { itemsInWishlist },
     dispatch,
   } = useStateContext();
+
+  const totalItemsCountInWishlist = itemsInWishlist.length;
 
   useEffect(() => {
     (async () => {
@@ -25,14 +27,22 @@ export const Wishlist = () => {
     })();
   }, [dispatch]);
 
-  console.log(itemsInWishlist);
-
   return (
     <div className="wrapper wrapper-fluid">
       <div className="wishlistBody">
-        {itemsInWishlist.length !== 0 ? (
-          <WishlistCard />
-        ) : (
+        {totalItemsCountInWishlist > 0 && (
+          <>
+            <h1 className="wishlistTitle">
+              My Wishlist <span>({totalItemsCountInWishlist} items)</span>
+            </h1>
+            <div className="wishlistItem">
+              {itemsInWishlist.map((wishlist) => (
+                <WishlistCard key={wishlist._id} wishlist={wishlist} />
+              ))}
+            </div>
+          </>
+        )}
+        {totalItemsCountInWishlist === 0 && (
           <>
             <img
               src={EmptyWishlist}

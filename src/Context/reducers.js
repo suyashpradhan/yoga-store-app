@@ -25,10 +25,10 @@ export const reducer = (state, action) => {
       return {
         ...state,
         itemsInBag: state.itemsInBag.map((product) =>
-          product.id === action.payload.id
+          product._id === action.payload._id
             ? {
                 ...product,
-                productQuantity: product.productQuantity + 1,
+                quantity: product.quantity + 1,
               }
             : product
         ),
@@ -38,23 +38,25 @@ export const reducer = (state, action) => {
       return {
         ...state,
         itemsInBag: state.itemsInBag.map((product) =>
-          product.id === action.payload.id
+          product._id === action.payload._id
             ? {
                 ...product,
-                productQuantity:
-                  product.productQuantity !== 1
-                    ? product.productQuantity - 1
-                    : 1,
+                quantity:
+                  product.quantity !== 1
+                    ? product.quantity - 1
+                    : state.state.itemsInBag.filter(
+                        (product) => product._id !== action.payload._id
+                      ),
               }
             : product
         ),
       };
 
-    case "REMOVE_ITEM":
+    case "REMOVE_ITEM_FROM_BAG":
       return {
         ...state,
         itemsInBag: state.itemsInBag.filter(
-          (product) => product.id !== action.payload.id
+          (product) => product._id !== action.payload._id
         ),
       };
 

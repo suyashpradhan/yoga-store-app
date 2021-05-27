@@ -9,7 +9,7 @@ export const PriceDetails = () => {
 
   const itemsPrice = itemsInBag.reduce(
     (accumulator, currentValue) =>
-      accumulator + currentValue.productQuantity * currentValue.price,
+      accumulator + currentValue.quantity * currentValue.discountedPrice,
     0
   );
 

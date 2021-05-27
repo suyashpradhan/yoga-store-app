@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
-import "./Bag.css";
+import "../../Components/Bag/Bag.css";
 import EmptyBag from "../../assets/images/empty-bag.svg";
 import { useStateContext } from "../../Context";
-import { BagCard } from "./BagCard";
-import { PriceDetails } from "./PriceDetails";
+import { BagCard } from "../../Components/Bag/BagCard";
+import { PriceDetails } from "../../Components/Bag/PriceDetails";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
@@ -22,7 +22,7 @@ export const Bag = () => {
       );
       dispatch({ type: "SET_BAG", payload: response.data });
     })();
-  }, [dispatch]);
+  }, []);
 
   return (
     <div className="wrapper wrapper-fluid">
@@ -33,7 +33,11 @@ export const Bag = () => {
               My Shopping Bag <span> ({itemsInBag.length} items) </span>
             </h1>
             <div className="bagRow">
-              <BagCard />
+              <div>
+                {itemsInBag.map((singleItem) => (
+                  <BagCard key={singleItem._id} product={singleItem} />
+                ))}
+              </div>
               <PriceDetails />
             </div>
           </>

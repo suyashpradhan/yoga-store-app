@@ -30,7 +30,7 @@
 
 .bagRow {
     display: grid;
-    grid-template-columns: 1fr 24rem;
+    grid-template-columns: 2fr 1fr;
     grid-gap: 2rem;
     align-items: stretch;
     margin: 4rem 0;

@@ -1,1 +1,1 @@
-export { Bag } from "./Bag";
+export { Bag, AddToBag } from "./Bag";
