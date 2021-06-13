@@ -1,34 +1,5 @@
 import axios from "axios";
-import { wishlists } from "../API/URL";
 import { carts } from "../API/URL";
-
-export const addItemInWishlist = async (product, dispatch) => {
-  try {
-    const { _id } = product;
-    const postData = await axios.post(`${wishlists}`, {
-      _id: _id,
-      isInWishlist: true,
-    });
-    if (postData.status === 201) {
-      dispatch({ type: "ADD_WISHLIST_ITEM", payload: product });
-    }
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-export const removeItemFromWishlist = async (product, dispatch) => {
-  try {
-    const { _id } = product;
-    const deletedId = await axios.delete(`${wishlists}/${_id}`);
-
-    if (deletedId.status === 204) {
-      dispatch({ type: "DELETE_WISHLIST_ITEM", payload: product });
-    }
-  } catch (error) {
-    console.log(error);
-  }
-};
 
 export const addItemInBag = async (product, dispatch) => {
   try {

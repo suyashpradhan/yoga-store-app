@@ -9,6 +9,8 @@ import { ToastContainer } from "./Components/Toast";
 import { useEffect } from "react";
 import axios from "axios";
 import { useStateContext } from "./Context";
+import { SignUp } from "./Pages/SignUp";
+import { SignIn } from "./Pages/SignIn/SignIn";
 
 export const App = () => {
   const { dispatch } = useStateContext();
@@ -16,9 +18,7 @@ export const App = () => {
   useEffect(() => {
     (async () => {
       try {
-        const response = await axios.get(
-          "https://apiyogastore.suyashpradhan.repl.co/products"
-        );
+        const response = await axios.get("http://localhost:4000/products");
         dispatch({ type: "SHOW_PRODUCTS", payload: response.data });
       } catch (error) {
         console.log(error);
@@ -29,9 +29,7 @@ export const App = () => {
   useEffect(() => {
     (async () => {
       try {
-        const response = await axios.get(
-          "https://apiyogastore.suyashpradhan.repl.co/wishlist"
-        );
+        const response = await axios.get("http://localhost:4000/wishlist");
         dispatch({ type: "SET_WISHLIST", payload: response.data });
       } catch (error) {
         console.log(error);
@@ -42,9 +40,7 @@ export const App = () => {
   useEffect(() => {
     (async () => {
       try {
-        const response = await axios.get(
-          "https://apiyogastore.suyashpradhan.repl.co/cart"
-        );
+        const response = await axios.get("http://localhost:4000/bag");
         dispatch({ type: "SET_CART", payload: response.data });
       } catch (error) {
         console.log(error);
@@ -62,6 +58,8 @@ export const App = () => {
         <Route exact path="/wishlist" element={<Wishlist />}></Route>
         <Route exact path="/bag" element={<Bag />}></Route>
         <Route exact path="/products/:_id" element={<ProductDetails />}></Route>
+        <Route exact path="/login" element={<SignIn />}></Route>
+        <Route exact path="/register" element={<SignUp />}></Route>
       </Routes>
     </>
   );

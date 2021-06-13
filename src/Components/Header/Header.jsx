@@ -9,7 +9,6 @@ import { Link } from "react-router-dom";
 export const Header = () => {
   const {
     state: { itemsInBag },
-    dispatch,
   } = useStateContext();
 
   return (
@@ -34,19 +33,13 @@ export const Header = () => {
 
           <div className="navRight ">
             <div className="wishlist mR2">
-              <Link
-                to="/wishlist"
-                onClick={() => dispatch({ type: "ROUTE", payload: "wishlist" })}
-              >
+              <Link to="/wishlist">
                 <img src={wishlist} alt="wishlist" className="icons"></img>
                 <h2 className="iconText">Wishlist</h2>
               </Link>
             </div>
-            <div className="bag">
-              <Link
-                to="/bag"
-                onClick={() => dispatch({ type: "ROUTE", payload: "bag" })}
-              >
+            <div className="bag mR2">
+              <Link to="/bag">
                 <img src={bag} alt="wishlist" className="icons"></img>
                 <h2 className="iconText">
                   Bag
@@ -56,6 +49,11 @@ export const Header = () => {
                     </span>
                   )}
                 </h2>
+              </Link>
+            </div>
+            <div className="register">
+              <Link to="/login" className="actionButtons">
+                Sign in
               </Link>
             </div>
           </div>

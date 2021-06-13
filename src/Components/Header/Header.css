@@ -152,3 +152,14 @@ button {
     background: transparent;
     border: none;
 }
+
+.actionButtons {
+    background-color: var(--secondary);
+    padding: .6rem 1.2rem;
+    border: 1px solid var(--secondary);
+    border-radius: .2rem;
+    color: var(--white);
+    letter-spacing: .04rem;
+    text-align: center;
+    text-transform: uppercase;
+}
