@@ -1,21 +1,18 @@
-import {
-  createContext,
-  useContext,
-  useReducer,
-} from "react/cjs/react.production.min";
+import { createContext, useContext, useReducer } from "react";
 import { userAuthReducer } from "./reducers";
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const user = JSON.parse(
-    localStorage.getItem("login") || {
-      isLoggedIn: false,
-      userAuthToken: null,
-    }
-  );
+  const userLoginDetails = JSON.parse(localStorage?.getItem("login")) || {
+    isLoggedIn: false,
+    userAuthToken: null,
+  };
 
-  const [userAuthState, userAuthDispatch] = useReducer(userAuthReducer, user);
+  const [userAuthState, userAuthDispatch] = useReducer(
+    userAuthReducer,
+    userLoginDetails
+  );
 
   return (
     <AuthContext.Provider value={{ userAuthState, userAuthDispatch }}>

@@ -3,9 +3,13 @@ import { useStateContext } from "../../Context";
 import CloseButton from "../../assets/images/close.svg";
 import Star from "../../assets/images/star.svg";
 import { removeItemFromWishlist } from "../../server-requests";
+import { useAuth } from "../../Context/auth-context";
 
 export const WishlistCard = ({ wishlist }) => {
   const { dispatch } = useStateContext();
+  const {
+    userAuthState: { isLoggedIn, userAuthToken },
+  } = useAuth();
 
   return (
     <>
@@ -33,7 +37,14 @@ export const WishlistCard = ({ wishlist }) => {
         </div>
         <button
           className="closeButton"
-          onClick={() => removeItemFromWishlist(dispatch, wishlist)}
+          onClick={() =>
+            removeItemFromWishlist(
+              wishlist,
+              dispatch,
+              isLoggedIn,
+              userAuthToken
+            )
+          }
         >
           <img src={CloseButton} className="icons" alt="close"></img>
         </button>

@@ -1,16 +1,18 @@
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { loginUser } from "../../server-requests";
 import "./SignIn.css";
+import { useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { loginUser } from "../../server-requests";
+import { useAuth } from "../../Context/auth-context";
 
 export const SignIn = () => {
+  const { userAuthDispatch } = useAuth();
   const [formInputs, setFormInputs] = useState({
-    fullName: "",
     email: "",
     password: "",
   });
   const [errors, setErrors] = useState("");
   const navigate = useNavigate();
+  const { state } = useLocation();
 
   const handleInputs = (e) => {
     setFormInputs((inputs) => {
@@ -29,9 +31,16 @@ export const SignIn = () => {
     });
 
     if (response.status === 200) {
-      setTimeout(() => {
-        navigate("/login");
-      }, 1000);
+      localStorage?.setItem(
+        "login",
+        JSON.stringify({ isLoggedIn: true, userAuthToken: response.data.token })
+      );
+      userAuthDispatch({
+        type: "SET_LOGIN",
+        payload: { token: response.data.token },
+      });
+      navigate(state?.from ? state.from : "/");
+      alert("LoggedIn Successful");
     } else {
       setErrors(response.data);
     }
@@ -44,8 +53,8 @@ export const SignIn = () => {
           <h1 className="loginCardHeader">Sign in to your account</h1>
           <form action="">
             <div className="formGroup">
-              <label htmlFor="" className="label">
-                Username
+              <label htmlFor="email" className="label">
+                Email
               </label>
               <input
                 type="text"

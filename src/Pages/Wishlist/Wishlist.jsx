@@ -14,17 +14,6 @@ export const Wishlist = () => {
 
   const totalItemsCountInWishlist = itemsInWishlist.length;
 
-  useEffect(() => {
-    (async () => {
-      try {
-        const response = await axios.get("http://localhost:4000/wishlist");
-        dispatch({ type: "SET_WISHLIST", payload: response.data });
-      } catch (error) {
-        console.log(error);
-      }
-    })();
-  }, [dispatch]);
-
   return (
     <div className="wrapper wrapper-fluid">
       <div className="wishlistBody">

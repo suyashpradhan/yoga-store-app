@@ -1,10 +1,10 @@
 import axios from "axios";
-import { carts } from "../API/URL";
+import { bag } from "../API/URL";
 
 export const addItemInBag = async (product, dispatch) => {
   try {
     const { _id } = product;
-    const postData = await axios.post(carts, {
+    const postData = await axios.post(bag, {
       _id: _id,
       quantity: 1,
     });
@@ -21,7 +21,7 @@ export const removeItemFromBag = async (product, dispatch) => {
   console.log(product);
   try {
     const { _id } = product;
-    const response = await axios.delete(`${carts}/${_id}`);
+    const response = await axios.delete(`${bag}/${_id}`);
 
     if (response.status === 204) {
       dispatch({ type: "REMOVE_ITEM_FROM_BAG", payload: product });
@@ -35,7 +35,7 @@ export const incrementQuantity = async (product, dispatch) => {
   console.log(product);
   try {
     const { _id } = product;
-    const response = await axios.post(`${carts}/${_id}`, {
+    const response = await axios.post(`${bag}/${_id}`, {
       _id: _id,
       quantity: product.quantity + 1,
     });

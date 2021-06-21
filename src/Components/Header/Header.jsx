@@ -5,11 +5,33 @@ import wishlist from "../../assets/images/wishlist.svg";
 import bag from "../../assets/images/bag.svg";
 import { useStateContext } from "../../Context";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../Context/auth-context";
 
 export const Header = () => {
   const {
     state: { itemsInBag },
+    dispatch,
   } = useStateContext();
+
+  const {
+    userAuthState: { isLoggedIn },
+    userAuthDispatch,
+  } = useAuth();
+
+  const handleLogout = () => {
+    localStorage?.removeItem("login");
+    userAuthDispatch({
+      type: "SET_LOGOUT",
+    });
+    dispatch({
+      type: "SET_WISHLIST",
+      payload: [],
+    });
+    dispatch({
+      type: "SET_BAG",
+      payload: [],
+    });
+  };
 
   return (
     <>
@@ -51,11 +73,19 @@ export const Header = () => {
                 </h2>
               </Link>
             </div>
-            <div className="register">
-              <Link to="/login" className="actionButtons">
-                Sign in
-              </Link>
-            </div>
+            {isLoggedIn ? (
+              <div className="logount">
+                <button className="actionButtons" onClick={handleLogout}>
+                  Logout
+                </button>
+              </div>
+            ) : (
+              <div className="register">
+                <Link to="/login" className="actionButtons">
+                  Sign in
+                </Link>
+              </div>
+            )}
           </div>
         </nav>
       </header>
