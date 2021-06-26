@@ -19,8 +19,10 @@ export const Sort = () => {
         value={state.sortBy}
         onChange={(e) => sortHandler(e)}
       >
+        <option value="default">Default</option>
         <option value="high_to_low">Price: High to Low</option>
         <option value="low_to_high">Price: Low to High</option>
+        <option value="popularity">Popularity</option>
       </select>
     </>
   );

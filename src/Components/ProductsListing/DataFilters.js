@@ -9,30 +9,32 @@ export const getSortedData = (state, data) => {
 };
 
 export const getFilteredData = (state, data) => {
+  let newData = [...data];
+
   if (!state.filters.includeOutOfStock) {
-    return [...data].filter((product) => product.inStock);
+    newData = newData.filter((product) => product.inStock);
   }
 
   if (state.filters.filterByBrands.length !== 0) {
-    return [...data].filter((product) => {
-      return state.filters.filterByBrands.includes(product.brand);
-    });
+    newData = newData.filter((product) =>
+      state.filters.filterByBrands.includes(product.brand)
+    );
   }
 
   if (state.filters.filterByCategories.length !== 0)
-    [...data].filter((product) =>
+    newData = newData.filter((product) =>
       state.filters.filterByCategories.includes(product.category)
     );
 
   if (state.filters.filterByDiscounts.length !== 0)
-    [...data].filter((product) =>
+    newData = newData.filter((product) =>
       state.filters.filterByDiscounts.includes(product.discount)
     );
 
   if (state.filters.filterByRatings.length !== 0)
-    [...data].filter((product) =>
+    newData = newData.filter((product) =>
       state.filters.filterByRatings.includes(product.ratings)
     );
 
-  return [...data];
+  return newData;
 };

@@ -4,24 +4,13 @@ import { useEffect } from "react";
 import { useStateContext } from "./Context";
 import { PageRoutes } from "./routes";
 import { useAuth } from "./Context/auth-context";
-import { products, wishlist, bag } from "./API/URL";
+import { wishlist, bag } from "./API/URL";
 
 export const App = () => {
   const { dispatch } = useStateContext();
   const {
     userAuthState: { isLoggedIn, userAuthToken },
   } = useAuth();
-
-  useEffect(() => {
-    (async () => {
-      try {
-        const response = await axios.get(products);
-        dispatch({ type: "SHOW_PRODUCTS", payload: response.data });
-      } catch (error) {
-        console.log(error);
-      }
-    })();
-  }, [dispatch]);
 
   useEffect(() => {
     if (isLoggedIn) {

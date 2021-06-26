@@ -54,31 +54,33 @@ export const Header = () => {
           </div>
 
           <div className="navRight ">
-            <div className="wishlist mR2">
-              <Link to="/wishlist">
-                <img src={wishlist} alt="wishlist" className="icons"></img>
-                <h2 className="iconText">Wishlist</h2>
-              </Link>
-            </div>
-            <div className="bag mR2">
-              <Link to="/bag">
-                <img src={bag} alt="wishlist" className="icons"></img>
-                <h2 className="iconText">
-                  Bag
-                  {itemsInBag.length >= 1 && (
-                    <span className="roundedBadge badgeActive">
-                      {itemsInBag.length}
-                    </span>
-                  )}
-                </h2>
-              </Link>
-            </div>
             {isLoggedIn ? (
-              <div className="logount">
-                <button className="actionButtons" onClick={handleLogout}>
-                  Logout
-                </button>
-              </div>
+              <>
+                <div className="wishlist mR2">
+                  <Link to="/wishlist">
+                    <img src={wishlist} alt="wishlist" className="icons"></img>
+                    <h2 className="iconText">Wishlist</h2>
+                  </Link>
+                </div>
+                <div className="bag mR2">
+                  <Link to="/bag">
+                    <img src={bag} alt="wishlist" className="icons"></img>
+                    <h2 className="iconText">
+                      Bag
+                      {itemsInBag.length >= 1 && (
+                        <span className="roundedBadge badgeActive">
+                          {itemsInBag.length}
+                        </span>
+                      )}
+                    </h2>
+                  </Link>
+                </div>
+                <div className="logout">
+                  <button className="actionButtons" onClick={handleLogout}>
+                    Logout
+                  </button>
+                </div>
+              </>
             ) : (
               <div className="register">
                 <Link to="/login" className="actionButtons">
