@@ -1,8 +1,8 @@
 import React from "react";
 import "./Header.css";
 import LogoMain from "../../assets/images/LogoMain.svg";
-import wishlist from "../../assets/images/wishlist.svg";
-import bag from "../../assets/images/bag.svg";
+import { AiOutlineHeart } from "react-icons/ai";
+import { BiShoppingBag } from "react-icons/bi";
 import { useStateContext } from "../../Context";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../Context/auth-context";
@@ -58,13 +58,13 @@ export const Header = () => {
               <>
                 <div className="wishlist mR2">
                   <Link to="/wishlist">
-                    <img src={wishlist} alt="wishlist" className="icons"></img>
+                    <AiOutlineHeart className="icons" />
                     <h2 className="iconText">Wishlist</h2>
                   </Link>
                 </div>
                 <div className="bag mR2">
                   <Link to="/bag">
-                    <img src={bag} alt="wishlist" className="icons"></img>
+                    <BiShoppingBag className="icons" />
                     <h2 className="iconText">
                       Bag
                       {itemsInBag.length >= 1 && (

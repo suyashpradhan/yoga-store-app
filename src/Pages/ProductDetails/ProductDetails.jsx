@@ -8,6 +8,7 @@ import { Product } from "../../Components/ProductsListing/Product";
 import { AiFillHome } from "react-icons/ai";
 import { AddToWishlist } from "../../Components/Wishlist/AddToWishlist";
 import { AddToBag } from "../../Components/Bag/AddToBag";
+import { products } from "../../API/URL";
 
 export const ProductDetails = () => {
   const [product, setProduct] = useState({});
@@ -15,9 +16,7 @@ export const ProductDetails = () => {
 
   useEffect(() => {
     (async () => {
-      const response = await axios.get(
-        `https://apiyogastore.suyashpradhan.repl.co/products/${_id}`
-      );
+      const response = await axios.get(`${products}/${_id}`);
       setProduct(response.data);
     })();
   }, []);
@@ -33,7 +32,7 @@ export const ProductDetails = () => {
           <div className="productLeftWrapper">
             <img
               src={product.image}
-              alt={product.image}
+              alt={product.name}
               className="productDetailsImage"
             />
           </div>

@@ -5,7 +5,8 @@ import { registerUser } from "../../server-requests";
 
 export const SignUp = () => {
   const [formInputs, setFormInputs] = useState({
-    fullName: "",
+    firstName: "",
+    lastName: "",
     email: "",
     password: "",
   });
@@ -24,17 +25,18 @@ export const SignUp = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const response = await registerUser({
-      fullName: formInputs.fullName,
+      firstName: formInputs.firstName,
+      lastName: formInputs.lastName,
       email: formInputs.email,
       password: formInputs.password,
     });
-
-    if (response.status === 200) {
+    console.log(response);
+    if (response.status === 201) {
       setTimeout(() => {
         navigate("/login");
       }, 1000);
     } else {
-      setErrors(response.data);
+      console.log("Error");
     }
   };
 
@@ -46,13 +48,25 @@ export const SignUp = () => {
           <form onSubmit={handleSubmit}>
             <div className="formGroup">
               <label htmlFor="" className="label">
-                Full name
+                First name
               </label>
               <input
                 type="text"
                 className="formField"
-                name="fullName"
-                value={formInputs.fullName}
+                name="firstName"
+                value={formInputs.firstName}
+                onChange={handleInputs}
+              />
+            </div>
+            <div className="formGroup">
+              <label htmlFor="" className="label">
+                Last name
+              </label>
+              <input
+                type="text"
+                className="formField"
+                name="lastName"
+                value={formInputs.lastName}
                 onChange={handleInputs}
               />
             </div>
@@ -86,6 +100,8 @@ export const SignUp = () => {
             <button className="button button-secondary loginButton">
               Create Account
             </button>
+
+            <p>{errors}</p>
           </form>
 
           <Link to="/login" className="link registerLink">

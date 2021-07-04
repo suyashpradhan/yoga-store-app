@@ -6,6 +6,7 @@ import { BagCard } from "../../Components/Bag/BagCard";
 import { PriceDetails } from "../../Components/Bag/PriceDetails";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { bag } from "../../API/URL";
 
 export const Bag = () => {
   const {
@@ -13,13 +14,9 @@ export const Bag = () => {
     dispatch,
   } = useStateContext();
 
-  console.log(itemsInBag);
-
   useEffect(() => {
     (async () => {
-      const response = await axios.get(
-        `https://apiyogastore.suyashpradhan.repl.co/cart`
-      );
+      const response = await axios.get(`${bag}`);
       dispatch({ type: "SET_BAG", payload: response.data });
     })();
   }, []);

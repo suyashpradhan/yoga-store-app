@@ -19,7 +19,12 @@ export const App = () => {
           const response = await axios.get(wishlist, {
             headers: { authorization: userAuthToken },
           });
-          dispatch({ type: "SET_WISHLIST", payload: response.data });
+          if (response.status === 200) {
+            dispatch({
+              type: "SET_WISHLIST",
+              payload: response.data.wishlistItems,
+            });
+          }
         } catch (error) {
           console.log(error);
         }

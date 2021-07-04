@@ -1,16 +1,16 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { WishlistCard } from "../../Components/Wishlist/WishlistCard";
 import "../../Components/Wishlist/Wishlist.css";
 import EmptyWishlist from "../../assets/images/empty-wishlist.svg";
 import { useStateContext } from "../../Context";
 import { Link } from "react-router-dom";
-import axios from "axios";
 
 export const Wishlist = () => {
   const {
     state: { itemsInWishlist },
-    dispatch,
   } = useStateContext();
+
+  console.log(itemsInWishlist);
 
   const totalItemsCountInWishlist = itemsInWishlist.length;
 

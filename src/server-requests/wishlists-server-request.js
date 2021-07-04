@@ -12,11 +12,10 @@ export const addItemInWishlist = async (
     isLoggedIn,
     callback: async () => {
       try {
-        const { _id } = product;
-        const postData = await axios.post(
+        const response = await axios.post(
           wishlist,
           {
-            _id: _id,
+            _id: product._id,
           },
           {
             headers: {
@@ -24,7 +23,7 @@ export const addItemInWishlist = async (
             },
           }
         );
-        if (postData.status === 201) {
+        if (response.status === 201) {
           dispatch({ type: "ADD_WISHLIST_ITEM", payload: product });
         }
       } catch (error) {
@@ -48,7 +47,7 @@ export const removeItemFromWishlist = async (
         const deletedId = await axios.delete(`${wishlist}/${_id}`, {
           headers: { authorization: token },
         });
-        dispatch({ type: "DELETE_WISHLIST_ITEM", payload: product });
+        dispatch({ type: "DELETE_WISHLIST_ITEM", payload: deletedId });
       } catch (error) {
         console.log(error);
       }

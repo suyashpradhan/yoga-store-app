@@ -1,4 +1,4 @@
-const baseURL = `https://yoga-store-api-suyashpradhan.vercel.app`;
+export const baseURL = `https://yoga-store-api.suyashpradhan.repl.co`;
 
 export const products = `${baseURL}/products`;
 export const wishlist = `${baseURL}/wishlist`;

@@ -1,24 +1,28 @@
 import axios from "axios";
 import { login, register } from "../API/URL";
 
-export const registerUser = async ({ fullName, email, password }) => {
+export const registerUser = async ({
+  firstName,
+  lastName,
+  email,
+  password,
+}) => {
   let response = {};
   try {
     response = await axios.post(`${register}`, {
-      fullName,
+      firstName,
+      lastName,
       email,
       password,
     });
   } catch (error) {
-    response.data = {
-      error: error.response.data,
-    };
+    console.log(error);
   }
 
   return response;
 };
 
-export const loginUser = async ({ fullName, email, password }) => {
+export const loginUser = async ({ email, password }) => {
   let response = {};
   try {
     response = await axios.post(`${login}`, {
@@ -26,9 +30,7 @@ export const loginUser = async ({ fullName, email, password }) => {
       password,
     });
   } catch (error) {
-    response.data = {
-      error: error.response.data,
-    };
+    console.log(error);
   }
 
   return response;

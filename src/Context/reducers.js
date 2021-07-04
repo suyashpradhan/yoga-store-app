@@ -60,16 +60,16 @@ export const reducer = (state, action) => {
         ),
       };
 
-    case "ADD_WISHLIST_ITEM":
-      return {
-        ...state,
-        itemsInWishlist: [...state.itemsInWishlist, action.payload],
-      };
-
     case "SET_WISHLIST":
       return {
         ...state,
         itemsInWishlist: action.payload,
+      };
+
+    case "ADD_WISHLIST_ITEM":
+      return {
+        ...state,
+        itemsInWishlist: [...state.itemsInWishlist, action.payload],
       };
 
     case "DELETE_WISHLIST_ITEM":
