@@ -9,6 +9,7 @@ export const CartContextProvider = ({ children }) => {
     itemsInWishlist: [],
     itemsInBag: [],
     sortBy: "",
+    searchedText: "",
     filters: {
       includeOutOfStock: false,
       isYogaAssured: false,

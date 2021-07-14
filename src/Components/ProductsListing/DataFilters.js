@@ -8,7 +8,7 @@ export const getSortedData = (state, data) => {
   return data;
 };
 
-export const getFilteredData = (state, data) => {
+export const getFilteredData = (state, data, searchedValue) => {
   let newData = [...data];
 
   if (!state.filters.includeOutOfStock) {

@@ -1,1 +1,1 @@
-export { isAlreadyAdded } from "./utils";
+export { isAlreadyAdded, searchedProduct } from "./utils";

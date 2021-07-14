@@ -3,9 +3,11 @@ import "./Bag.css";
 import { useStateContext } from "../../Context";
 import { useAuth } from "../../Context/auth-context";
 import { actionOnBag } from "../../server-requests";
+import { useToastHook } from "../../CustomHooks/useToast";
 
 export const BagCard = ({ product }) => {
   const { dispatch } = useStateContext();
+  const toast = useToastHook(3000);
 
   const {
     userAuthState: { isLoggedIn },
@@ -21,7 +23,10 @@ export const BagCard = ({ product }) => {
           </div>
           <div className="productDetail">
             <h1 className="productName mT1 text-left">{product.name}</h1>
-            <h1 className="productPrice text-left">
+            <h1
+              className="productPrice"
+              style={{ textAlign: "left", display: "block" }}
+            >
               Rs {product.discountedPrice}
             </h1>
 
@@ -52,6 +57,7 @@ export const BagCard = ({ product }) => {
                 onClick={() => {
                   actionOnBag(product, "REMOVE_PRODUCT_FROM_BAG", dispatch);
                   dispatch({ type: "REMOVE_PRODUCT", payload: product });
+                  toast("success", "Product Removed");
                 }}
               >
                 REMOVE ITEM

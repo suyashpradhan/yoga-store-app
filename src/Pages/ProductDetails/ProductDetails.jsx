@@ -9,19 +9,28 @@ import { AiFillHome } from "react-icons/ai";
 import { AddToWishlist } from "../../Components/Wishlist/AddToWishlist";
 import { AddToBag } from "../../Components/Bag/AddToBag";
 import { products } from "../../API/URL";
+import Loader from "react-loader-spinner";
 
 export const ProductDetails = () => {
   const [product, setProduct] = useState({});
+  const [loader, setLoader] = useState(false);
+
   const { _id } = useParams();
 
   useEffect(() => {
     (async () => {
+      setLoader(true);
       const response = await axios.get(`${products}/${_id}`);
+      setLoader(false);
       setProduct(response.data);
     })();
   }, []);
 
-  return (
+  return loader ? (
+    <div className="loaderRow">
+      <Loader type="Oval" color="#0c6ff9" height={80} width={80} />
+    </div>
+  ) : (
     <div className="wrapper-fluid">
       <Link to="/products" element={<Product />}>
         <AiFillHome className="productDetailsIcon" />
@@ -45,7 +54,12 @@ export const ProductDetails = () => {
               {product.ratings} / 5.0
               <img src={starIcon} alt="ratings" className="cardIcon-sm"></img>
             </span>
-
+            <p className="productDummyDescription">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi
+              tempore, vel fuga voluptatibus consectetur nesciunt repudiandae
+              nulla maxime laborum officia corporis at, nisi nobis ea obcaecati
+              ipsam, deserunt reiciendis laudantium!
+            </p>
             <h3 className="productPrice pB2">Rs {product.discountedPrice}</h3>
             <h4 className="actualPrice">Rs {product.originalPrice}</h4>
             <h4 className="offer">{product.discount} % </h4>

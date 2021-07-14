@@ -7,8 +7,11 @@ import { PriceDetails } from "../../Components/Bag/PriceDetails";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../Context/auth-context";
 import { emptyBag } from "../../server-requests";
+import { useToastHook } from "../../CustomHooks/useToast";
 
 export const Bag = () => {
+  const toast = useToastHook(3000);
+
   const {
     state: { itemsInBag },
     dispatch,
@@ -22,6 +25,7 @@ export const Bag = () => {
     if (isLoggedIn) {
       await emptyBag(dispatch);
     } else {
+      toast("success", "Removed all products from Bag");
       dispatch({ type: "CLEAR_BAG" });
     }
   };
@@ -33,7 +37,9 @@ export const Bag = () => {
           <>
             <h1 className="bagMainTitle">
               My Shopping Bag <span> ({itemsInBag.length} items) </span>
-              <button onClick={clearBag}>Clear Bag</button>
+              <button onClick={clearBag} className="button button-danger">
+                Clear Bag
+              </button>
             </h1>
             <div className="bagRow">
               <div>

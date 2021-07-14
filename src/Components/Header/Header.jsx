@@ -6,10 +6,13 @@ import { BiShoppingBag } from "react-icons/bi";
 import { useStateContext } from "../../Context";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../Context/auth-context";
+import { useToastHook } from "../../CustomHooks/useToast";
 
 export const Header = () => {
+  const toast = useToastHook(3000);
+
   const {
-    state: { itemsInBag },
+    state: { itemsInBag, searchedText },
     dispatch,
   } = useStateContext();
 
@@ -19,6 +22,7 @@ export const Header = () => {
   } = useAuth();
 
   const handleLogout = () => {
+    toast("success", "Succesfully Logged out");
     localStorage?.removeItem("login");
     userAuthDispatch({
       type: "SET_LOGOUT",
@@ -49,6 +53,13 @@ export const Header = () => {
                 type="text"
                 placeholder="Search Items"
                 className="searchField"
+                value={searchedText}
+                onChange={(e) =>
+                  dispatch({
+                    type: "SEARCH_PRODUCT",
+                    payload: e.target.value,
+                  })
+                }
               />
             </div>
           </div>
@@ -67,11 +78,11 @@ export const Header = () => {
                     <BiShoppingBag className="icons" />
                     <h2 className="iconText">
                       Bag
-                      {/*  {itemsInBag.length >= 1 && (
+                      {itemsInBag.length >= 1 && (
                         <span className="roundedBadge badgeActive">
                           {itemsInBag.length}
                         </span>
-                      )} */}
+                      )}
                     </h2>
                   </Link>
                 </div>

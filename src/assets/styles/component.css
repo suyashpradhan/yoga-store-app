@@ -48,6 +48,18 @@
     background-color: var(--danger);
     border: 1px solid var(--danger);
     color: var(--white);
+    font-size: 1rem;
+    display: block;
+    margin: 1rem auto 0 auto;
+}
+
+.button-width {
+    width: 14rem;
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin: 2rem 0;
+    display: block;
+    margin-right: 1rem;
 }
 
 /*Links*/
@@ -55,6 +67,7 @@
     background: transparent;
     border: none;
     font-size: 1.1rem;
+
 }
 
 .link:hover {

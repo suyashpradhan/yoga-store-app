@@ -6,6 +6,18 @@ export const reducer = (state, action) => {
         products: action.payload,
       };
 
+    case "SEARCH_PRODUCT":
+      return {
+        ...state,
+        searchedText: action.payload,
+      };
+
+    case "CLEAR_SEARCH":
+      return {
+        ...state,
+        searchedText: "",
+      };
+
     case "SET_BAG":
       return {
         ...state,

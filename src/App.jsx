@@ -5,6 +5,7 @@ import { useStateContext } from "./Context";
 import { PageRoutes } from "./routes";
 import { useAuth } from "./Context/auth-context";
 import { fetchUserBag, fetchUserWishlist } from "./server-requests";
+import { ToastContainer } from "./Components/Toast";
 
 export const App = () => {
   const { dispatch } = useStateContext();
@@ -31,6 +32,7 @@ export const App = () => {
     <>
       <Header />
       <PageRoutes />
+      <ToastContainer />
     </>
   );
 };

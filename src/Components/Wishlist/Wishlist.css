@@ -24,7 +24,7 @@
 
 .wishlistTitle span {
     color: var(--text-secondary) !important;
-    font-weight: 300 !important;
+    font-weight: 500 !important;
     font-size: 1.2rem !important;
 }
 
@@ -67,5 +67,5 @@
 }
 
 .closeButton .icons {
-    height: 2rem;
+    height: 1.4rem;
 }

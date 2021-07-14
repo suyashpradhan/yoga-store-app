@@ -13,7 +13,7 @@
 
 .bagMainTitle span {
     color: var(--text-secondary) !important;
-    font-weight: 300 !important;
+    font-weight: 500 !important;
     font-size: 1.2rem !important;
 }
 
@@ -110,7 +110,7 @@
 .bagText {
     font-size: 1.1rem;
     color: var(--text-secondary);
-    font-weight: 300;
+    font-weight: 400;
     padding-bottom: 1rem;
 }
 

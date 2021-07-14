@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { actionOnBag } from "../../server-requests";
 import { actionOnUserWishlist } from "../../server-requests";
 import { useAuth } from "../../Context/auth-context";
+import { useToastHook } from "../../CustomHooks/useToast";
 
 const itemExistsInBag = (itemsInBag, productId) =>
   itemsInBag.some((product) => product._id === productId);
@@ -11,6 +12,8 @@ const itemExistsInBag = (itemsInBag, productId) =>
 export const itemExists = (array, id) => array.some((item) => item._id === id);
 
 export const AddToBag = ({ product }) => {
+  const toast = useToastHook(3000);
+
   const {
     state: { itemsInBag, itemsInWishlist },
     dispatch,
@@ -30,35 +33,16 @@ export const AddToBag = ({ product }) => {
 
   return (
     <>
-      {/* {isItemInBag ? (
-        <Link to="/bag">
-          <button className="button button-primary flex-1 mR1">
-            GO TO BAG
-          </button>
-        </Link>
-      ) : (
-        <button
-          type="button"
-          className="button button-secondary flex-1 mR1"
-          onClick={() => {
-            dispatch({
-              type: "ADD_PRODUCT",
-              payload: product,
-            });
-          }}
-        >
-          ADD TO BAG
-        </button>
-      )} */}
-
       <button
         type="button"
         className={
-          isItemInBag ? "button button-primary" : "button button-secondary"
+          isItemInBag
+            ? "button button-primary button-width"
+            : "button button-secondary button-width"
         }
         onClick={() => {
           isItemInBag
-            ? navigate("/cart")
+            ? navigate("/bag")
             : isLoggedIn
             ? isWishlisted
               ? updateLists()
@@ -67,9 +51,10 @@ export const AddToBag = ({ product }) => {
                 type: "ADD_PRODUCT",
                 payload: product,
               });
+          toast("success", "Added product in bag");
         }}
       >
-        {isItemInBag ? "Go to Cart" : "Add to Cart"}
+        {isItemInBag ? "Go to Bag" : "Add to Bag"}
       </button>
     </>
   );

@@ -3,8 +3,10 @@ import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { loginUser } from "../../server-requests";
 import { useAuth } from "../../Context/auth-context";
+import { useToastHook } from "../../CustomHooks/useToast";
 
 export const SignIn = () => {
+  const toast = useToastHook(3000);
   const { userAuthDispatch } = useAuth();
   const [formInputs, setFormInputs] = useState({
     email: "",
@@ -31,6 +33,7 @@ export const SignIn = () => {
     });
 
     if (response.status === 200) {
+      toast("success", "Succesfully Logged in");
       localStorage?.setItem(
         "login",
         JSON.stringify({ isLoggedIn: true, userAuthToken: response.data.token })
@@ -40,7 +43,6 @@ export const SignIn = () => {
         payload: { token: response.data.token },
       });
       navigate(state?.from ? state.from : "/");
-      alert("LoggedIn Successful");
     } else {
       setErrors(response.data);
     }
