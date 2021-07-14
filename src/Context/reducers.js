@@ -6,20 +6,33 @@ export const reducer = (state, action) => {
         products: action.payload,
       };
 
-    case "ADD_TO_BAG":
-      return {
-        ...state,
-        itemsInBag: [
-          ...state.itemsInBag,
-          { ...action.payload, quantity: 1, isInCart: true },
-        ],
-      };
-
     case "SET_BAG":
       return {
         ...state,
         itemsInBag: action.payload,
       };
+
+    case "ADD_PRODUCT":
+      if (
+        state.itemsInBag.some((product) => product._id === action.payload._id)
+      ) {
+        return {
+          ...state,
+          itemsInBag: state.itemsInBag.map((product) =>
+            product._id === action.payload._id
+              ? { ...product, quantity: product.quantity + 1 }
+              : product
+          ),
+        };
+      } else {
+        return {
+          ...state,
+          itemsInBag: state.itemsInBag.concat({
+            ...action.payload,
+            quantity: 1,
+          }),
+        };
+      }
 
     case "INCREMENT_QTY":
       return {
@@ -52,11 +65,23 @@ export const reducer = (state, action) => {
         ),
       };
 
-    case "REMOVE_ITEM_FROM_BAG":
+    case "REMOVE_PRODUCT":
       return {
         ...state,
         itemsInBag: state.itemsInBag.filter(
           (product) => product._id !== action.payload._id
+        ),
+      };
+
+    case "CLEAR_BAG":
+      return { ...state, itemsInBag: [] };
+
+    case "MOVE_TO_WISHLIST":
+      return {
+        ...state,
+        itemsInWishlist: state.itemsInWishlist.concat(action.payload),
+        itemsInBag: state.itemsInBag.filter(
+          (cartItem) => cartItem._id !== action.payload._id
         ),
       };
 
@@ -66,13 +91,15 @@ export const reducer = (state, action) => {
         itemsInWishlist: action.payload,
       };
 
-    case "ADD_WISHLIST_ITEM":
+    case "ADD_PRODUCT_IN_WISHLIST":
       return {
         ...state,
-        itemsInWishlist: [...state.itemsInWishlist, action.payload],
+        itemsInWishlist: state.itemsInWishlist.concat({
+          ...action.payload,
+        }),
       };
 
-    case "DELETE_WISHLIST_ITEM":
+    case "REMOVE_PRODUCT_FROM_WISHLIST":
       return {
         ...state,
         itemsInWishlist: state.itemsInWishlist.filter(

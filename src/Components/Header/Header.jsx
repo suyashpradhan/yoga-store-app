@@ -67,11 +67,11 @@ export const Header = () => {
                     <BiShoppingBag className="icons" />
                     <h2 className="iconText">
                       Bag
-                      {itemsInBag.length >= 1 && (
+                      {/*  {itemsInBag.length >= 1 && (
                         <span className="roundedBadge badgeActive">
                           {itemsInBag.length}
                         </span>
-                      )}
+                      )} */}
                     </h2>
                   </Link>
                 </div>

@@ -1,12 +1,8 @@
 export {
-  addItemInWishlist,
-  removeItemFromWishlist,
+  fetchUserWishlist,
+  actionOnUserWishlist,
 } from "./wishlists-server-request";
 
-export {
-  addItemInBag,
-  removeItemFromBag,
-  incrementQuantity,
-} from "./bag-server-request";
+export { fetchUserBag, actionOnBag, emptyBag } from "./bag-server-request";
 
 export { registerUser, loginUser } from "./login-server-requests";

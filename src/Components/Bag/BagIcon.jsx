@@ -13,7 +13,7 @@ export const BagIcon = (props) => {
           dispatch({ type: "ADD_TO_BAG", payload: props.product, route: "BAG" })
         }
       >
-        ADD TO CART
+        Add to Bag
       </button>
     </div>
   );

@@ -1,13 +1,17 @@
 import React from "react";
 import "./Bag.css";
 import { useStateContext } from "../../Context";
-import {
-  removeItemFromBag,
-  incrementQuantity,
-} from "../../server-requests/index";
+import { useAuth } from "../../Context/auth-context";
+import { actionOnBag } from "../../server-requests";
 
 export const BagCard = ({ product }) => {
   const { dispatch } = useStateContext();
+
+  const {
+    userAuthState: { isLoggedIn },
+  } = useAuth();
+  console.log(product);
+
   return (
     <>
       <div key={product.id} className="bagItem">
@@ -24,7 +28,9 @@ export const BagCard = ({ product }) => {
             <div className="buttonRow">
               <button
                 className="button-extra increment"
-                onClick={() => incrementQuantity(product, dispatch)}
+                onClick={() =>
+                  dispatch({ type: "INCREMENT_QTY", payload: product })
+                }
               >
                 +
               </button>
@@ -41,8 +47,12 @@ export const BagCard = ({ product }) => {
 
             <div className="bagFooter mT1 mB1 block text-left">
               <button
+                type="button"
                 className="button button-secondary"
-                onClick={() => removeItemFromBag(product, dispatch)}
+                onClick={() => {
+                  actionOnBag(product, "REMOVE_PRODUCT_FROM_BAG", dispatch);
+                  dispatch({ type: "REMOVE_PRODUCT", payload: product });
+                }}
               >
                 REMOVE ITEM
               </button>

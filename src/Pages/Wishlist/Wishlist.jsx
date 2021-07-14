@@ -10,8 +10,6 @@ export const Wishlist = () => {
     state: { itemsInWishlist },
   } = useStateContext();
 
-  console.log(itemsInWishlist);
-
   const totalItemsCountInWishlist = itemsInWishlist.length;
 
   return (
@@ -23,8 +21,8 @@ export const Wishlist = () => {
               My Wishlist <span>({totalItemsCountInWishlist} items)</span>
             </h1>
             <div className="wishlistItem">
-              {itemsInWishlist.map((wishlist) => (
-                <WishlistCard key={wishlist._id} wishlist={wishlist} />
+              {itemsInWishlist.map((product) => (
+                <WishlistCard key={product._id} product={product} />
               ))}
             </div>
           </>

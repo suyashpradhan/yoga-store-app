@@ -1,70 +1,50 @@
+/* eslint-disable default-case */
 import axios from "axios";
-import { bag } from "../API/URL";
-import { isUserLoggedIn } from "../utils/utils";
+import { bagURL, wishlist } from "./../API/URL";
 
-export const addItemInBag = async (product, dispatch, isLoggedIn, token) => {
-  isUserLoggedIn({
-    isLoggedIn,
-    callback: async () => {
-      try {
-        const { _id } = product;
-        const postData = await axios.post(
-          bag,
-          {
-            _id,
-          },
-          {
-            headers: {
-              authorization: token,
-            },
-          }
-        );
-        if (postData.status === 201) {
-          dispatch({ type: "ADD_TO_BAG", payload: product });
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    },
-  });
+export const fetchUserBag = async (dispatch) => {
+  const {
+    data: { bag },
+  } = await axios.get(`${bagURL}`);
+  if (bag) {
+    dispatch({ type: "SET_BAG", payload: bag });
+  }
 };
 
-export const removeItemFromBag = async (
-  product,
-  dispatch,
-  isLoggedIn,
-  token
-) => {
-  isUserLoggedIn({
-    isLoggedIn,
-    callback: async () => {
-      try {
-        const { _id } = product;
-        const response = await axios.delete(`${bag}/${_id}`);
-
-        if (response.status === 204) {
-          dispatch({ type: "REMOVE_ITEM_FROM_BAG", payload: product });
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    },
-  });
-};
-
-export const incrementQuantity = async (product, dispatch) => {
-  console.log(product);
+export const actionOnBag = async (product, action, dispatch) => {
   try {
-    const { _id } = product;
-    const response = await axios.post(`${bag}/${_id}`, {
-      _id: _id,
-      quantity: product.quantity + 1,
+    const { data } = await axios.post(`${bagURL}`, {
+      _id: product._id,
+      action: action,
     });
-
-    if (response.status === 204) {
-      dispatch({ type: "INCREMENT_QUANTITY", payload: product });
+    if (data.success) {
+      switch (action.toUpperCase()) {
+        case "ADD_PRODUCT_IN_BAG":
+          dispatch({
+            type: "ADD_PRODUCT",
+            payload: product,
+          });
+          break;
+        case "REMOVE_PRODUCT_FROM_BAG":
+          dispatch({
+            type: "REMOVE_PRODUCT",
+            payload: product,
+          });
+          break;
+      }
     }
   } catch (error) {
-    console.log(error);
+    console.error(error);
+  }
+};
+
+export const emptyBag = async (dispatch) => {
+  try {
+    const { data } = await axios.delete(`${bagURL}`);
+    if (data.success) {
+      dispatch({ type: "CLEAR_BAG" });
+    }
+  } catch (error) {
+    console.error(error);
   }
 };

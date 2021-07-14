@@ -1,56 +1,43 @@
 import axios from "axios";
 import { wishlist } from "../API/URL";
-import { isUserLoggedIn } from "../utils/utils";
 
-export const addItemInWishlist = async (
-  product,
-  dispatch,
-  isLoggedIn,
-  token
-) => {
-  isUserLoggedIn({
-    isLoggedIn,
-    callback: async () => {
-      try {
-        const response = await axios.post(
-          wishlist,
-          {
-            _id: product._id,
-          },
-          {
-            headers: {
-              authorization: token,
-            },
-          }
-        );
-        if (response.status === 201) {
-          dispatch({ type: "ADD_WISHLIST_ITEM", payload: product });
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    },
-  });
+export const fetchUserWishlist = async (dispatch) => {
+  try {
+    const {
+      data: { wishlistItems },
+    } = await axios.get(`${wishlist}`);
+    if (wishlistItems) {
+      dispatch({ type: "SET_WISHLIST", payload: wishlistItems });
+    }
+  } catch (err) {
+    console.error(err);
+  }
 };
 
-export const removeItemFromWishlist = async (
+export const actionOnUserWishlist = async (
   product,
   dispatch,
-  isLoggedIn,
-  token
+  isAlreadyInWishlist
 ) => {
-  isUserLoggedIn({
-    isLoggedIn,
-    callback: async () => {
-      try {
-        const { _id } = product;
-        const deletedId = await axios.delete(`${wishlist}/${_id}`, {
-          headers: { authorization: token },
+  try {
+    const { data } = await axios.post(`${wishlist}`, {
+      _id: product._id,
+    });
+    console.log(data);
+    if (data.success) {
+      if (isAlreadyInWishlist) {
+        dispatch({
+          type: "REMOVE_PRODUCT_FROM_WISHLIST",
+          payload: product,
         });
-        dispatch({ type: "DELETE_WISHLIST_ITEM", payload: deletedId });
-      } catch (error) {
-        console.log(error);
+      } else {
+        dispatch({
+          type: "ADD_PRODUCT_IN_WISHLIST",
+          payload: product,
+        });
       }
-    },
-  });
+    }
+  } catch (error) {
+    console.error(error);
+  }
 };

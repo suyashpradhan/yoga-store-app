@@ -1,12 +1,12 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "../../Components/Bag/Bag.css";
 import EmptyBag from "../../assets/images/empty-bag.svg";
 import { useStateContext } from "../../Context";
 import { BagCard } from "../../Components/Bag/BagCard";
 import { PriceDetails } from "../../Components/Bag/PriceDetails";
 import { Link } from "react-router-dom";
-import axios from "axios";
-import { bag } from "../../API/URL";
+import { useAuth } from "../../Context/auth-context";
+import { emptyBag } from "../../server-requests";
 
 export const Bag = () => {
   const {
@@ -14,12 +14,17 @@ export const Bag = () => {
     dispatch,
   } = useStateContext();
 
-  useEffect(() => {
-    (async () => {
-      const response = await axios.get(`${bag}`);
-      dispatch({ type: "SET_BAG", payload: response.data });
-    })();
-  }, []);
+  const {
+    userAuthState: { isLoggedIn },
+  } = useAuth();
+
+  const clearBag = async () => {
+    if (isLoggedIn) {
+      await emptyBag(dispatch);
+    } else {
+      dispatch({ type: "CLEAR_BAG" });
+    }
+  };
 
   return (
     <div className="wrapper wrapper-fluid">
@@ -28,11 +33,12 @@ export const Bag = () => {
           <>
             <h1 className="bagMainTitle">
               My Shopping Bag <span> ({itemsInBag.length} items) </span>
+              <button onClick={clearBag}>Clear Bag</button>
             </h1>
             <div className="bagRow">
               <div>
-                {itemsInBag.map((singleItem) => (
-                  <BagCard key={singleItem._id} product={singleItem} />
+                {itemsInBag.map((product) => (
+                  <BagCard key={product._id} product={product} />
                 ))}
               </div>
               <PriceDetails />
@@ -45,9 +51,9 @@ export const Bag = () => {
             <p className="bagSubTitle">
               There is nothing in your bag. Let's add some items
             </p>
-            <Link to="/wishlist">
+            <Link to="/products">
               <button className="button button-secondary">
-                ADD ITEMS FROM WISHLIST
+                Start Shopping
               </button>
             </Link>
           </>

@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useStateContext } from "./Context";
 import { PageRoutes } from "./routes";
 import { useAuth } from "./Context/auth-context";
-import { wishlist, bag } from "./API/URL";
+import { fetchUserBag, fetchUserWishlist } from "./server-requests";
 
 export const App = () => {
   const { dispatch } = useStateContext();
@@ -14,38 +14,18 @@ export const App = () => {
 
   useEffect(() => {
     if (isLoggedIn) {
-      (async () => {
-        try {
-          const response = await axios.get(wishlist, {
-            headers: { authorization: userAuthToken },
-          });
-          if (response.status === 200) {
-            dispatch({
-              type: "SET_WISHLIST",
-              payload: response.data.wishlistItems,
-            });
-          }
-        } catch (error) {
-          console.log(error);
-        }
-      })();
+      axios.defaults.headers.common["Authorization"] = userAuthToken;
+    } else {
+      delete axios.defaults.headers.common["Authorization"];
     }
-  }, [dispatch, isLoggedIn, userAuthToken]);
+  }, [isLoggedIn]);
 
   useEffect(() => {
     if (isLoggedIn) {
-      (async () => {
-        try {
-          const response = await axios.get(bag, {
-            headers: { authorization: userAuthToken },
-          });
-          dispatch({ type: "SET_CART", payload: response.data });
-        } catch (error) {
-          console.log(error);
-        }
-      })();
+      fetchUserWishlist(dispatch);
+      fetchUserBag(dispatch);
     }
-  }, [dispatch, isLoggedIn, userAuthToken]);
+  }, [isLoggedIn]);
 
   return (
     <>
