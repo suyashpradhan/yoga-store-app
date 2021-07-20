@@ -1,15 +1,16 @@
 import { createContext, useContext, useReducer } from "react";
 import { reducer } from "./reducers";
 
-export const CartContext = createContext();
+export const StateContext = createContext();
 
-export const CartContextProvider = ({ children }) => {
+export const StateContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, {
     products: [],
     itemsInWishlist: [],
     itemsInBag: [],
     sortBy: "",
     searchedText: "",
+    toastMsg: "",
     filters: {
       includeOutOfStock: false,
       isYogaAssured: false,
@@ -21,10 +22,10 @@ export const CartContextProvider = ({ children }) => {
   });
 
   return (
-    <CartContext.Provider value={{ state, dispatch }}>
+    <StateContext.Provider value={{ state, dispatch }}>
       {children}
-    </CartContext.Provider>
+    </StateContext.Provider>
   );
 };
 
-export const useStateContext = () => useContext(CartContext);
+export const useStateContext = () => useContext(StateContext);

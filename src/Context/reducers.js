@@ -24,27 +24,16 @@ export const reducer = (state, action) => {
         itemsInBag: action.payload,
       };
 
+    case "SHOW_TOAST":
+      return { ...state, toastMsg: action.payload };
+
     case "ADD_PRODUCT":
-      if (
-        state.itemsInBag.some((product) => product._id === action.payload._id)
-      ) {
-        return {
-          ...state,
-          itemsInBag: state.itemsInBag.map((product) =>
-            product._id === action.payload._id
-              ? { ...product, quantity: product.quantity + 1 }
-              : product
-          ),
-        };
-      } else {
-        return {
-          ...state,
-          itemsInBag: state.itemsInBag.concat({
-            ...action.payload,
-            quantity: 1,
-          }),
-        };
-      }
+      return {
+        ...state,
+        itemsInBag: state.itemsInBag.concat({
+          ...action.payload,
+        }),
+      };
 
     case "INCREMENT_QTY":
       return {

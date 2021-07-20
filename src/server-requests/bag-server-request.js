@@ -1,6 +1,5 @@
-/* eslint-disable default-case */
 import axios from "axios";
-import { bagURL, wishlist } from "./../API/URL";
+import { bagURL } from "./../API/URL";
 
 export const fetchUserBag = async (dispatch) => {
   const {
@@ -11,27 +10,16 @@ export const fetchUserBag = async (dispatch) => {
   }
 };
 
-export const actionOnBag = async (product, action, dispatch) => {
+export const actionOnBag = async (product, dispatch) => {
   try {
     const { data } = await axios.post(`${bagURL}`, {
       _id: product._id,
-      action: action,
     });
     if (data.success) {
-      switch (action.toUpperCase()) {
-        case "ADD_PRODUCT_IN_BAG":
-          dispatch({
-            type: "ADD_PRODUCT",
-            payload: product,
-          });
-          break;
-        case "REMOVE_PRODUCT_FROM_BAG":
-          dispatch({
-            type: "REMOVE_PRODUCT",
-            payload: product,
-          });
-          break;
-      }
+      dispatch({
+        type: "ADD_PRODUCT",
+        payload: product,
+      });
     }
   } catch (error) {
     console.error(error);

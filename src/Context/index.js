@@ -1,1 +1,1 @@
-export { useStateContext, CartContextProvider } from "./context";
+export { useStateContext, StateContextProvider } from "./context";

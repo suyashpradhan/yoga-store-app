@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { App } from "./App.jsx";
-import { CartContextProvider } from "./Context";
+import { StateContextProvider } from "./Context";
 import { ToastContextProvider } from "./Context/toast-context";
 import { BrowserRouter as Router } from "react-router-dom";
 import { AuthProvider } from "./Context/auth-context";
@@ -11,9 +11,9 @@ ReactDOM.render(
     <Router>
       <AuthProvider>
         <ToastContextProvider>
-          <CartContextProvider>
+          <StateContextProvider>
             <App />
-          </CartContextProvider>
+          </StateContextProvider>
         </ToastContextProvider>
       </AuthProvider>
     </Router>

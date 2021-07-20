@@ -23,7 +23,6 @@ export const actionOnUserWishlist = async (
     const { data } = await axios.post(`${wishlist}`, {
       _id: product._id,
     });
-    console.log(data);
     if (data.success) {
       if (isAlreadyInWishlist) {
         dispatch({

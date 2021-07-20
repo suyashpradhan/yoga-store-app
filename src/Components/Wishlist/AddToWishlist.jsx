@@ -4,14 +4,19 @@ import wishlistFilled from "../../assets/images/wishlist-filled.svg";
 import { isAlreadyAdded } from "../../utils";
 import { actionOnUserWishlist } from "../../server-requests/index";
 import { useToastHook } from "../../CustomHooks/useToast";
+import { useAuth } from "../../Context/auth-context";
+import { useNavigate } from "react-router-dom";
 
 export const AddToWishlist = ({ product }) => {
   const toast = useToastHook(3000);
-
+  const {
+    userAuthState: { isLoggedIn },
+  } = useAuth();
   const {
     state: { itemsInWishlist },
     dispatch,
   } = useStateContext();
+  const navigate = useNavigate();
 
   const isAlreadyInWishlist = isAlreadyAdded(itemsInWishlist, product._id);
 
@@ -21,8 +26,9 @@ export const AddToWishlist = ({ product }) => {
         className="iconWrap"
         type="button"
         onClick={() => {
-          actionOnUserWishlist(product, dispatch, isAlreadyInWishlist);
-          toast("success", `Product added to wishlist`);
+          isLoggedIn
+            ? actionOnUserWishlist(product, dispatch, isAlreadyInWishlist)
+            : navigate("/login");
         }}
       >
         {isAlreadyInWishlist ? (

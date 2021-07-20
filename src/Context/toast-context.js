@@ -1,15 +1,16 @@
 import React, { createContext, useContext, useReducer } from "react";
-import { toastReducer } from "./toast-reducer";
+import { reducer } from "./reducers";
 
 const ToastContext = createContext();
+const initialState = {
+  toastMessage: "",
+};
 
 export const ToastContextProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(toastReducer, {
-    toasts: [],
-  });
+  const [toast, toastDispatch] = useReducer(reducer, initialState);
 
   return (
-    <ToastContext.Provider value={{ state, dispatch }}>
+    <ToastContext.Provider value={{ toast, toastDispatch }}>
       {children}
     </ToastContext.Provider>
   );
