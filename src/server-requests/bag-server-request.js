@@ -26,6 +26,22 @@ export const actionOnBag = async (product, dispatch) => {
   }
 };
 
+export const removeProduct = async (product, dispatch) => {
+  try {
+    const { data } = await axios.delete(`${bagURL}`, {
+      _id: product._id,
+    });
+    if (data.success) {
+      dispatch({
+        type: "REMOVE_PRODUCT",
+        payload: product,
+      });
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 export const emptyBag = async (dispatch) => {
   try {
     const { data } = await axios.delete(`${bagURL}`);

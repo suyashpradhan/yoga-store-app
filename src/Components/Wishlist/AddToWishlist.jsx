@@ -1,14 +1,12 @@
-import { useStateContext } from "../../Context";
+import { useStateContext } from "../../context";
 import wishlist from "../../assets/images/wishlist.svg";
 import wishlistFilled from "../../assets/images/wishlist-filled.svg";
 import { isAlreadyAdded } from "../../utils";
 import { actionOnUserWishlist } from "../../server-requests/index";
-import { useToastHook } from "../../CustomHooks/useToast";
-import { useAuth } from "../../Context/auth-context";
+import { useAuth } from "../../context/auth-context";
 import { useNavigate } from "react-router-dom";
 
 export const AddToWishlist = ({ product }) => {
-  const toast = useToastHook(3000);
   const {
     userAuthState: { isLoggedIn },
   } = useAuth();

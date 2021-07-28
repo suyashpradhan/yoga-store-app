@@ -1,8 +1,8 @@
 import React from "react";
-import { WishlistCard } from "../../Components/Wishlist/WishlistCard";
-import "../../Components/Wishlist/Wishlist.css";
+import { WishlistCard } from "../../components/Wishlist/WishlistCard";
+import "../../components/Wishlist/Wishlist.css";
 import EmptyWishlist from "../../assets/images/empty-wishlist.svg";
-import { useStateContext } from "../../Context";
+import { useStateContext } from "../../context";
 import { Link } from "react-router-dom";
 
 export const Wishlist = () => {

@@ -1,5 +1,5 @@
 import React from "react";
-import { useStateContext } from "../../Context";
+import { useStateContext } from "../../context";
 import { ratings } from "../../exports";
 import { AiFillStar } from "react-icons/ai";
 

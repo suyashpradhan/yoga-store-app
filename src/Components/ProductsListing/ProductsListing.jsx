@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Product } from "./Product";
 import "./ProductsListing.css";
-import { useStateContext } from "../../Context";
+import { useStateContext } from "../../context";
 import { Sort } from "./Sort";
 import { Sidebar } from "../Sidebar/";
 import Loader from "react-loader-spinner";

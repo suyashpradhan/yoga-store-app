@@ -1,11 +1,14 @@
 import { useEffect } from "react";
-import { useToastContext } from "../../Context/toast-context";
+import { useToastContext } from "../../context";
 
 export const Toast = () => {
-  const { toast, setToast } = useToastContext();
+  const {
+    state: { toastMessage },
+    toastDispatch,
+  } = useToastContext();
 
   const closeToast = () => {
-    setToast();
+    toastDispatch({ type: "SHOW_TOAST", payload: null });
   };
 
   useEffect(() => {
@@ -14,8 +17,9 @@ export const Toast = () => {
   });
 
   return (
-    <div className="toastWrapper">
-      <h3 className="toast-message">{toast}</h3>
+    <div className="toast">
+      <h3 className="toastMessage">{toastMessage}</h3>
+      <button className="toastIcon">X</button>
     </div>
   );
 };

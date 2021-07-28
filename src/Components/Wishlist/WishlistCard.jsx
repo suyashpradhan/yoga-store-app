@@ -1,18 +1,15 @@
 import React from "react";
-import { useStateContext } from "../../Context";
+import { useStateContext } from "../../context";
 import CloseButton from "../../assets/images/close.svg";
 import Star from "../../assets/images/star.svg";
 import { actionOnUserWishlist } from "../../server-requests";
 import { isAlreadyAdded } from "../../utils";
 import { Link } from "react-router-dom";
-import { useToastHook } from "../../CustomHooks/useToast";
 
 const itemExistsInBag = (itemsInBag, productId) =>
   itemsInBag.some((product) => product._id === productId);
 
 export const WishlistCard = ({ product }) => {
-  const toast = useToastHook(3000);
-
   const {
     state: { itemsInWishlist, itemsInBag },
     dispatch,
@@ -64,7 +61,6 @@ export const WishlistCard = ({ product }) => {
           className="closeButton"
           onClick={() => {
             actionOnUserWishlist(product, dispatch, isAlreadyInWishlist);
-            toast("success", "Product removed from wishlist");
           }}
         >
           <img src={CloseButton} className="icons" alt="close"></img>

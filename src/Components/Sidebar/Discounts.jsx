@@ -1,5 +1,5 @@
 import React from "react";
-import { useStateContext } from "../../Context";
+import { useStateContext } from "../../context";
 import { discounts } from "../../exports";
 
 export const Discounts = () => {

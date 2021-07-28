@@ -30,8 +30,10 @@ export const reducer = (state, action) => {
     case "ADD_PRODUCT":
       return {
         ...state,
+
         itemsInBag: state.itemsInBag.concat({
           ...action.payload,
+          quantity: 1,
         }),
       };
 

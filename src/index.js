@@ -1,10 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { App } from "./App.jsx";
-import { StateContextProvider } from "./Context";
-import { ToastContextProvider } from "./Context/toast-context";
+import { StateContextProvider } from "./context";
+import { ToastContextProvider } from "./context";
 import { BrowserRouter as Router } from "react-router-dom";
-import { AuthProvider } from "./Context/auth-context";
+import { AuthProvider } from "./context";
 
 ReactDOM.render(
   <React.StrictMode>

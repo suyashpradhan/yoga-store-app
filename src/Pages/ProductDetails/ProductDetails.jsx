@@ -4,10 +4,10 @@ import axios from "axios";
 import starIcon from "../../assets/images/star.svg";
 import "./ProductDetails.css";
 import { Link } from "react-router-dom";
-import { Product } from "../../Components/ProductsListing/Product";
+import { Product } from "../../components/ProductsListing/Product";
 import { AiFillHome } from "react-icons/ai";
-import { AddToWishlist } from "../../Components/Wishlist/AddToWishlist";
-import { AddToBag } from "../../Components/Bag/AddToBag";
+import { AddToWishlist } from "../../components/Wishlist/AddToWishlist";
+import { AddToBag } from "../../components/Bag/AddToBag";
 import { products } from "../../API/URL";
 import Loader from "react-loader-spinner";
 

@@ -1,11 +1,8 @@
 import React from "react";
-import { useStateContext } from "../../Context";
-import { useToastHook } from "../../CustomHooks/useToast";
+import { useStateContext } from "../../context";
 import { actionOnBag } from "../../server-requests";
 
 export const AddToBag = ({ product }) => {
-  const toast = useToastHook(3000);
-
   const {
     state: { itemsInBag },
     dispatch,
@@ -18,7 +15,6 @@ export const AddToBag = ({ product }) => {
         className={"button button-secondary button-width"}
         onClick={() => {
           actionOnBag(product, dispatch);
-          toast("success", "Added product in bag");
         }}
       >
         Add to Bag

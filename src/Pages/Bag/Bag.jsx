@@ -1,17 +1,14 @@
 import React from "react";
-import "../../Components/Bag/Bag.css";
+import "../../components/Bag/Bag.css";
 import EmptyBag from "../../assets/images/empty-bag.svg";
-import { useStateContext } from "../../Context";
-import { BagCard } from "../../Components/Bag/BagCard";
-import { PriceDetails } from "../../Components/Bag/PriceDetails";
+import { useStateContext } from "../../context";
+import { BagCard } from "../../components/Bag/BagCard";
+import { PriceDetails } from "../../components/Checkout";
 import { Link } from "react-router-dom";
-import { useAuth } from "../../Context/auth-context";
+import { useAuth } from "../../context/auth-context";
 import { emptyBag } from "../../server-requests";
-import { useToastHook } from "../../CustomHooks/useToast";
 
 export const Bag = () => {
-  const toast = useToastHook(3000);
-
   const {
     state: { itemsInBag },
     dispatch,
@@ -25,7 +22,6 @@ export const Bag = () => {
     if (isLoggedIn) {
       await emptyBag(dispatch);
     } else {
-      toast("success", "Removed all products from Bag");
       dispatch({ type: "CLEAR_BAG" });
     }
   };

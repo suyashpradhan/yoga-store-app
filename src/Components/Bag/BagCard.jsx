@@ -1,13 +1,11 @@
 import React from "react";
 import "./Bag.css";
-import { useStateContext } from "../../Context";
-import { useAuth } from "../../Context/auth-context";
-import { actionOnBag } from "../../server-requests";
-import { useToastHook } from "../../CustomHooks/useToast";
+import { useStateContext } from "../../context";
+import { useAuth } from "../../context/auth-context";
+import { removeProduct } from "../../server-requests";
 
 export const BagCard = ({ product }) => {
   const { dispatch } = useStateContext();
-  const toast = useToastHook(3000);
 
   const {
     userAuthState: { isLoggedIn },
@@ -55,9 +53,7 @@ export const BagCard = ({ product }) => {
                 type="button"
                 className="button button-secondary"
                 onClick={() => {
-                  actionOnBag(product, "REMOVE_PRODUCT_FROM_BAG", dispatch);
-                  dispatch({ type: "REMOVE_PRODUCT", payload: product });
-                  toast("success", "Product Removed");
+                  removeProduct(product, dispatch);
                 }}
               >
                 REMOVE ITEM

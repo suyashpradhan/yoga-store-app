@@ -1,13 +1,13 @@
 import React from "react";
 import { Route, Routes } from "react-router";
-import { Home } from "../Components/Home";
-import { ProductsListing } from "../Components/ProductsListing";
-import { ProductDetails } from "../Pages/ProductDetails/ProductDetails";
-import { SignIn } from "../Pages/SignIn/SignIn";
-import { SignUp } from "../Pages/SignUp/SignUp";
+import { Home } from "../components/Home";
+import { ProductsListing } from "../components/ProductsListing";
+import { ProductDetails } from "../pages/ProductDetails/ProductDetails";
+import { SignIn } from "../pages/SignIn/SignIn";
+import { SignUp } from "../pages/SignUp/SignUp";
 import { PrivateRoutes } from "./private-routes";
-import { Bag } from "../Pages/Bag";
-import { Wishlist } from "../Pages/Wishlist";
+import { Bag } from "../pages/Bag";
+import { Wishlist } from "../pages/Wishlist";
 
 export const PageRoutes = () => {
   return (

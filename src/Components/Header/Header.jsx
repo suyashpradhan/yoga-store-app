@@ -3,14 +3,11 @@ import "./Header.css";
 import LogoMain from "../../assets/images/LogoMain.svg";
 import { AiOutlineHeart } from "react-icons/ai";
 import { BiShoppingBag } from "react-icons/bi";
-import { useStateContext } from "../../Context";
+import { useStateContext } from "../../context";
 import { Link } from "react-router-dom";
-import { useAuth } from "../../Context/auth-context";
-import { useToastHook } from "../../CustomHooks/useToast";
+import { useAuth } from "../../context/";
 
 export const Header = () => {
-  const toast = useToastHook(3000);
-
   const {
     state: { itemsInBag, searchedText },
     dispatch,
@@ -22,7 +19,6 @@ export const Header = () => {
   } = useAuth();
 
   const handleLogout = () => {
-    toast("success", "Succesfully Logged out");
     localStorage?.removeItem("login");
     userAuthDispatch({
       type: "SET_LOGOUT",

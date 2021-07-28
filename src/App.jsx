@@ -1,9 +1,9 @@
 import axios from "axios";
-import { Header } from "./Components/Header";
+import { Header } from "./components/Header";
 import { useEffect } from "react";
-import { useStateContext } from "./Context";
+import { useStateContext } from "./context";
 import { PageRoutes } from "./routes";
-import { useAuth } from "./Context/auth-context";
+import { useAuth } from "./context";
 import { fetchUserBag, fetchUserWishlist } from "./server-requests";
 
 export const App = () => {
