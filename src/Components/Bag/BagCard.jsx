@@ -10,7 +10,6 @@ export const BagCard = ({ product }) => {
   const {
     userAuthState: { isLoggedIn },
   } = useAuth();
-  console.log(product);
 
   return (
     <>

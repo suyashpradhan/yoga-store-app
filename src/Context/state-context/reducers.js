@@ -27,15 +27,11 @@ export const reducer = (state, action) => {
     case "SHOW_TOAST":
       return { ...state, toastMsg: action.payload };
 
-    case "ADD_PRODUCT":
+    /* case "ADD_PRODUCT":
       return {
         ...state,
-
-        itemsInBag: state.itemsInBag.concat({
-          ...action.payload,
-          quantity: 1,
-        }),
-      };
+        itemsInBag: state.itemsInBag.concat(action.payload),
+      }; */
 
     case "INCREMENT_QTY":
       return {

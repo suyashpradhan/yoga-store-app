@@ -15,7 +15,8 @@
     --white: #ffffff;
     --green: #388e3c;
     --yellow: #fdb65d;
-    --danger: #ff0000
+    --danger: #ff0000;
+    --background-dark: #1e1f28
 }
 
 * {

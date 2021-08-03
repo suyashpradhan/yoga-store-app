@@ -1,7 +1,8 @@
 import React from "react";
 import { useStateContext } from "../../context";
-import { ratings } from "../../exports";
 import { AiFillStar } from "react-icons/ai";
+
+const ratings = [1.0, 2.0, 3.0, 4.0, 5.0];
 
 export const Ratings = () => {
   const { state, dispatch } = useStateContext();

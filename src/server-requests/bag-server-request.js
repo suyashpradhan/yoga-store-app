@@ -3,22 +3,31 @@ import { bagURL } from "./../API/URL";
 
 export const fetchUserBag = async (dispatch) => {
   const {
-    data: { bag },
+    data: { products },
+    status,
   } = await axios.get(`${bagURL}`);
-  if (bag) {
-    dispatch({ type: "SET_BAG", payload: bag });
+  console.log(products);
+
+  if (status === 200 || status === 201) {
+    dispatch({ type: "SET_BAG", payload: products });
   }
 };
 
 export const actionOnBag = async (product, dispatch) => {
   try {
-    const { data } = await axios.post(`${bagURL}`, {
+    const {
+      data: { products },
+      status,
+    } = await axios.post(`${bagURL}`, {
       _id: product._id,
+      quantity: 1,
+      isActive: true,
     });
-    if (data.success) {
+    console.log(products);
+    if (status === 200 || status === 201) {
       dispatch({
-        type: "ADD_PRODUCT",
-        payload: product,
+        type: "SET_BAG",
+        payload: products,
       });
     }
   } catch (error) {

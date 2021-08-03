@@ -14,6 +14,8 @@ export const Bag = () => {
     dispatch,
   } = useStateContext();
 
+  console.log(itemsInBag);
+
   const {
     userAuthState: { isLoggedIn },
   } = useAuth();

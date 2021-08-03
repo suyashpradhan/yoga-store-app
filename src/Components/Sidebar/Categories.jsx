@@ -1,6 +1,7 @@
 import React from "react";
 import { useStateContext } from "../../context";
-import { categories } from "../../exports";
+
+const categories = ["Mats", "Blankets", "Clothing"];
 
 export const Categories = () => {
   const { state, dispatch } = useStateContext();

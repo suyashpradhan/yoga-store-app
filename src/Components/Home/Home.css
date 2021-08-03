@@ -2,3 +2,34 @@ button {
     background: none;
     border: none;
 }
+
+.sectionHeader {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.brands-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    align-items: center;
+    grid-gap: 1rem;
+    padding: 1rem 0;
+}
+
+.brand-image {
+    height: 100%;
+    width: 100%;
+}
+
+@media screen and (max-width:600px) and (min-width:100px) {
+    .brands-row {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+@media screen and (max-width:767px) and (min-width:601px) {
+    .brands-row {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

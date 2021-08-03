@@ -1,6 +1,7 @@
 import React from "react";
 import { useStateContext } from "../../context";
-import { discounts } from "../../exports";
+
+const discounts = [10, 20, 50, 70];
 
 export const Discounts = () => {
   const { state, dispatch } = useStateContext();
