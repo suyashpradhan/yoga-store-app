@@ -5,28 +5,12 @@ import { useStateContext } from "../../context";
 import { BagCard } from "../../components/Bag/BagCard";
 import { PriceDetails } from "../../components/Checkout";
 import { Link } from "react-router-dom";
-import { useAuth } from "../../context/auth-context";
-import { emptyBag } from "../../server-requests";
 
 export const Bag = () => {
   const {
     state: { itemsInBag },
     dispatch,
   } = useStateContext();
-
-  console.log(itemsInBag);
-
-  const {
-    userAuthState: { isLoggedIn },
-  } = useAuth();
-
-  const clearBag = async () => {
-    if (isLoggedIn) {
-      await emptyBag(dispatch);
-    } else {
-      dispatch({ type: "CLEAR_BAG" });
-    }
-  };
 
   return (
     <div className="wrapper wrapper-fluid">
@@ -35,14 +19,12 @@ export const Bag = () => {
           <>
             <h1 className="bagMainTitle">
               My Shopping Bag <span> ({itemsInBag.length} items) </span>
-              <button onClick={clearBag} className="button button-danger">
-                Clear Bag
-              </button>
+              <button className="button button-danger">Clear Bag</button>
             </h1>
             <div className="bagRow">
               <div>
                 {itemsInBag.map((product) => (
-                  <BagCard key={product._id} product={product} />
+                  <BagCard key={product._id} singleProduct={product} />
                 ))}
               </div>
               <PriceDetails />

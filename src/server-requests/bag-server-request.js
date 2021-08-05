@@ -6,7 +6,6 @@ export const fetchUserBag = async (dispatch) => {
     data: { products },
     status,
   } = await axios.get(`${bagURL}`);
-  console.log(products);
 
   if (status === 200 || status === 201) {
     dispatch({ type: "SET_BAG", payload: products });
@@ -23,7 +22,6 @@ export const actionOnBag = async (product, dispatch) => {
       quantity: 1,
       isActive: true,
     });
-    console.log(products);
     if (status === 200 || status === 201) {
       dispatch({
         type: "SET_BAG",
@@ -35,15 +33,65 @@ export const actionOnBag = async (product, dispatch) => {
   }
 };
 
-export const removeProduct = async (product, dispatch) => {
+export const increaseQuantity = async (product, dispatch, quantity) => {
+  console.log(product);
   try {
-    const { data } = await axios.delete(`${bagURL}`, {
+    const {
+      data: { products },
+      status,
+    } = await axios.post(`${bagURL}`, {
       _id: product._id,
+      quantity: quantity + 1,
+      isActive: true,
     });
-    if (data.success) {
+    if (status === 200 || status === 201) {
       dispatch({
-        type: "REMOVE_PRODUCT",
-        payload: product,
+        type: "SET_BAG",
+        payload: products,
+      });
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const decreaseQuantity = async (product, dispatch, quantity) => {
+  console.log(product);
+  try {
+    const {
+      data: { products },
+      status,
+    } = await axios.post(`${bagURL}`, {
+      _id: product._id,
+      quantity: quantity - 1,
+      isActive: true,
+    });
+    if (status === 200 || status === 201) {
+      dispatch({
+        type: "SET_BAG",
+        payload: products,
+      });
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const removeFromBag = async (product, dispatch) => {
+  console.log(product);
+  try {
+    const {
+      data: { products },
+      status,
+    } = await axios.post(`${bagURL}`, {
+      _id: product._id,
+      quantity: 0,
+      isActive: false,
+    });
+    if (status === 200 || status === 201) {
+      dispatch({
+        type: "SET_BAG",
+        payload: products,
       });
     }
   } catch (error) {

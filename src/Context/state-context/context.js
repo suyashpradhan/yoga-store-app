@@ -10,7 +10,7 @@ export const StateContextProvider = ({ children }) => {
     itemsInBag: [],
     sortBy: "",
     searchedText: "",
-    toastMsg: "",
+    toastMessage: "",
     filters: {
       includeOutOfStock: false,
       isYogaAssured: false,

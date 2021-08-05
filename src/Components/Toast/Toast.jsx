@@ -1,25 +1,27 @@
 import { useEffect } from "react";
-import { useToastContext } from "../../context";
+import { useStateContext } from "../../context";
+import "./Toast.css";
 
-export const Toast = () => {
+export const Toast = (type) => {
   const {
     state: { toastMessage },
-    toastDispatch,
-  } = useToastContext();
+    dispatch,
+  } = useStateContext();
 
   const closeToast = () => {
-    toastDispatch({ type: "SHOW_TOAST", payload: null });
+    dispatch({ type: "SHOW_TOAST", payload: null });
   };
 
   useEffect(() => {
-    const timeID = setTimeout(closeToast, 2000);
+    const timeID = setTimeout(closeToast, 3000);
     return () => clearTimeout(timeID);
   });
 
   return (
-    <div className="toast">
-      <h3 className="toastMessage">{toastMessage}</h3>
-      <button className="toastIcon">X</button>
-    </div>
+    <>
+      <div className={type === "error" ? "toast-error" : "toast-success"}>
+        <p className="toastMessage">{toastMessage}</p>
+      </div>
+    </>
   );
 };

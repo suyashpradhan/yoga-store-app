@@ -1,15 +1,14 @@
 import React from "react";
 import "./Bag.css";
 import { useStateContext } from "../../context";
-import { useAuth } from "../../context/auth-context";
-import { removeProduct } from "../../server-requests";
+import {
+  increaseQuantity,
+  decreaseQuantity,
+  removeFromBag,
+} from "../../server-requests";
 
-export const BagCard = ({ product }) => {
+export const BagCard = ({ singleProduct: { product, quantity } }) => {
   const { dispatch } = useStateContext();
-
-  const {
-    userAuthState: { isLoggedIn },
-  } = useAuth();
 
   return (
     <>
@@ -30,18 +29,14 @@ export const BagCard = ({ product }) => {
             <div className="buttonRow">
               <button
                 className="button-extra increment"
-                onClick={() =>
-                  dispatch({ type: "INCREMENT_QTY", payload: product })
-                }
+                onClick={() => increaseQuantity(product, dispatch, quantity)}
               >
                 +
               </button>
-              <span className="product-quantity">{product.quantity}</span>
+              <span className="product-quantity">{quantity}</span>
               <button
                 className="button-extra decrement"
-                onClick={() =>
-                  dispatch({ type: "DECREMENT_QTY", payload: product })
-                }
+                onClick={() => decreaseQuantity(product, dispatch, quantity)}
               >
                 -
               </button>
@@ -51,9 +46,7 @@ export const BagCard = ({ product }) => {
               <button
                 type="button"
                 className="button button-secondary"
-                onClick={() => {
-                  removeProduct(product, dispatch);
-                }}
+                onClick={() => removeFromBag(product, dispatch)}
               >
                 REMOVE ITEM
               </button>

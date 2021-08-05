@@ -6,8 +6,10 @@ export {
 export {
   fetchUserBag,
   actionOnBag,
+  increaseQuantity,
+  decreaseQuantity,
+  removeFromBag,
   emptyBag,
-  removeProduct,
 } from "./bag-server-request";
 
 export { registerUser, loginUser } from "./login-server-requests";

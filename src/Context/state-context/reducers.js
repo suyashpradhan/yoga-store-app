@@ -25,55 +25,7 @@ export const reducer = (state, action) => {
       };
 
     case "SHOW_TOAST":
-      return { ...state, toastMsg: action.payload };
-
-    /* case "ADD_PRODUCT":
-      return {
-        ...state,
-        itemsInBag: state.itemsInBag.concat(action.payload),
-      }; */
-
-    case "INCREMENT_QTY":
-      return {
-        ...state,
-        itemsInBag: state.itemsInBag.map((product) =>
-          product._id === action.payload._id
-            ? {
-                ...product,
-                quantity: product.quantity + 1,
-              }
-            : product
-        ),
-      };
-
-    case "DECREMENT_QTY":
-      return {
-        ...state,
-        itemsInBag: state.itemsInBag.map((product) =>
-          product._id === action.payload._id
-            ? {
-                ...product,
-                quantity:
-                  product.quantity !== 1
-                    ? product.quantity - 1
-                    : state.state.itemsInBag.filter(
-                        (product) => product._id !== action.payload._id
-                      ),
-              }
-            : product
-        ),
-      };
-
-    case "REMOVE_PRODUCT":
-      return {
-        ...state,
-        itemsInBag: state.itemsInBag.filter(
-          (product) => product._id !== action.payload._id
-        ),
-      };
-
-    case "CLEAR_BAG":
-      return { ...state, itemsInBag: [] };
+      return { ...state, toastMessage: action.payload };
 
     case "MOVE_TO_WISHLIST":
       return {

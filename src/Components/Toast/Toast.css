@@ -3,15 +3,25 @@
     justify-content: space-between;
     align-items: center;
     position: fixed;
-    left: 2rem;
-    bottom: 2rem;
-    background-color: var(--dark);
-    border: 1px solid var(--dark);
+    left: 50%;
+    bottom: 3rem;
     border-radius: .2rem;
     width: 20rem;
     height: auto;
     z-index: 999;
     margin: 0 auto;
+}
+
+
+.toast-success {
+    background-color: var(--green);
+    border: 1px solid var(--green);
+}
+
+
+.toast-error {
+    background-color: var(--danger);
+    border: 1px solid var(--danger);
 }
 
 .toastMessage {

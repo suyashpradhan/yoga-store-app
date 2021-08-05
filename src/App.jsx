@@ -5,9 +5,13 @@ import { useStateContext } from "./context";
 import { PageRoutes } from "./routes";
 import { useAuth } from "./context";
 import { fetchUserBag, fetchUserWishlist } from "./server-requests";
+import { Toast } from "./components/Toast/Toast";
 
 export const App = () => {
-  const { dispatch } = useStateContext();
+  const {
+    state: { toastMessage },
+    dispatch,
+  } = useStateContext();
   const {
     userAuthState: { isLoggedIn, userAuthToken },
   } = useAuth();
@@ -31,6 +35,7 @@ export const App = () => {
     <>
       <Header />
       <PageRoutes />
+      <div className="toast">{toastMessage && <Toast />}</div>
     </>
   );
 };
