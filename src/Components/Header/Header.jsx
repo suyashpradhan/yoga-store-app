@@ -89,11 +89,17 @@ export const Header = () => {
                 </div>
               </>
             ) : (
-              <div className="register">
+              <>
+                <Link to="/">
+                  <h2 className="iconText mR1">Home</h2>
+                </Link>
+                <Link to="/products">
+                  <h2 className="iconText mR1">Products</h2>
+                </Link>
                 <Link to="/login" className="actionButtons">
                   Sign in
                 </Link>
-              </div>
+              </>
             )}
           </div>
         </nav>

@@ -1,8 +1,9 @@
 import { useEffect } from "react";
 import { useStateContext } from "../../context";
 import "./Toast.css";
+import { GrFormClose } from "react-icons/gr";
 
-export const Toast = (type) => {
+export const Toast = () => {
   const {
     state: { toastMessage },
     dispatch,
@@ -19,8 +20,9 @@ export const Toast = (type) => {
 
   return (
     <>
-      <div className={type === "error" ? "toast-error" : "toast-success"}>
+      <div className="toast">
         <p className="toastMessage">{toastMessage}</p>
+        <GrFormClose className="toastIcons" onClick={closeToast} />
       </div>
     </>
   );

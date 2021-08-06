@@ -25,8 +25,11 @@ export const AddToWishlist = ({ product }) => {
         type="button"
         onClick={() => {
           isLoggedIn
-            ? actionOnUserWishlist(product, dispatch, isAlreadyInWishlist)
-            : navigate("/login");
+            ? actionOnUserWishlist(product, dispatch)
+            : dispatch({
+                type: "SHOW_TOAST",
+                payload: "You need to login to add product in Wishlist ",
+              });
         }}
       >
         {isAlreadyInWishlist ? (

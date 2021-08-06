@@ -6,11 +6,3 @@ export const searchedProduct = (product, searchedValue) => {
     tobeSearched.name.toLowerCase().includes(searchedValue.toLowerCase())
   );
 };
-
-/* export const isUserLoggedIn = ({ callback, isLoggedIn }) => {
-  if (isLoggedIn) {
-    callback();
-  } else {
-    alert("User not logged In!");
-  }
-}; */

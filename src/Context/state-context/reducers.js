@@ -1,3 +1,5 @@
+import { isAlreadyAdded } from "../../utils";
+
 export const reducer = (state, action) => {
   switch (action.type) {
     case "SHOW_PRODUCTS":
@@ -42,20 +44,20 @@ export const reducer = (state, action) => {
         itemsInWishlist: action.payload,
       };
 
-    case "ADD_PRODUCT_IN_WISHLIST":
+    case "TOGGLE_WISHLIST":
       return {
         ...state,
-        itemsInWishlist: state.itemsInWishlist.concat({
-          ...action.payload,
-        }),
-      };
-
-    case "REMOVE_PRODUCT_FROM_WISHLIST":
-      return {
-        ...state,
-        itemsInWishlist: state.itemsInWishlist.filter(
-          (product) => product._id !== action.payload._id
-        ),
+        toastMessage: isAlreadyAdded(state.itemsInWishlist, action.payload._id)
+          ? "Product Removed from Wishlist"
+          : "Product Added in Wishlist",
+        itemsInWishlist: isAlreadyAdded(
+          state.itemsInWishlist,
+          action.payload._id
+        )
+          ? state.itemsInWishlist.filter(
+              (product) => product._id !== action.payload._id
+            )
+          : state.itemsInWishlist.concat(action.payload),
       };
 
     case "HIGH_TO_LOW":

@@ -35,7 +35,7 @@ export const App = () => {
     <>
       <Header />
       <PageRoutes />
-      <div className="toast">{toastMessage && <Toast />}</div>
+      {toastMessage && <Toast />}
     </>
   );
 };

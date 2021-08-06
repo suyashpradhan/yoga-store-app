@@ -34,7 +34,6 @@ export const actionOnBag = async (product, dispatch) => {
 };
 
 export const increaseQuantity = async (product, dispatch, quantity) => {
-  console.log(product);
   try {
     const {
       data: { products },
@@ -56,7 +55,6 @@ export const increaseQuantity = async (product, dispatch, quantity) => {
 };
 
 export const decreaseQuantity = async (product, dispatch, quantity) => {
-  console.log(product);
   try {
     const {
       data: { products },
@@ -67,10 +65,15 @@ export const decreaseQuantity = async (product, dispatch, quantity) => {
       isActive: true,
     });
     if (status === 200 || status === 201) {
-      dispatch({
-        type: "SET_BAG",
-        payload: products,
-      });
+      const removeProduct = products.filter((product) =>
+        product.quantity < 1
+          ? removeFromBag(product, dispatch)
+          : dispatch({
+              type: "SET_BAG",
+              payload: products,
+            })
+      );
+      return removeProduct;
     }
   } catch (error) {
     console.error(error);

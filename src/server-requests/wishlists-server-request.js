@@ -14,27 +14,16 @@ export const fetchUserWishlist = async (dispatch) => {
   }
 };
 
-export const actionOnUserWishlist = async (
-  product,
-  dispatch,
-  isAlreadyInWishlist
-) => {
+export const actionOnUserWishlist = async (product, dispatch) => {
   try {
     const { data } = await axios.post(`${wishlist}`, {
       _id: product._id,
     });
     if (data.success) {
-      if (isAlreadyInWishlist) {
-        dispatch({
-          type: "REMOVE_PRODUCT_FROM_WISHLIST",
-          payload: product,
-        });
-      } else {
-        dispatch({
-          type: "ADD_PRODUCT_IN_WISHLIST",
-          payload: product,
-        });
-      }
+      dispatch({
+        type: "TOGGLE_WISHLIST",
+        payload: product,
+      });
     }
   } catch (error) {
     console.error(error);

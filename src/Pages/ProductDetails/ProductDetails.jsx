@@ -10,8 +10,12 @@ import { AddToWishlist } from "../../components/Wishlist/AddToWishlist";
 import { AddToBag } from "../../components/Bag/AddToBag";
 import { products } from "../../API/URL";
 import Loader from "react-loader-spinner";
+import { useStateContext } from "../../context";
 
 export const ProductDetails = () => {
+  const {
+    state: { itemsInBag },
+  } = useStateContext();
   const [product, setProduct] = useState({});
   const [loader, setLoader] = useState(false);
 
@@ -20,9 +24,14 @@ export const ProductDetails = () => {
   useEffect(() => {
     (async () => {
       setLoader(true);
-      const response = await axios.get(`${products}/${_id}`);
-      setLoader(false);
-      setProduct(response.data);
+      try {
+        const response = await axios.get(`${products}/${_id}`);
+        setProduct(response.data);
+        setLoader(false);
+      } catch (error) {
+        console.error(error);
+        setLoader(false);
+      }
     })();
   }, []);
 

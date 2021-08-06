@@ -8,15 +8,12 @@ export const PriceDetails = () => {
     state: { itemsInBag },
   } = useStateContext();
 
-  /*  const itemsPrice = itemsInBag.reduce(
-    (accumulator, { currentValue: { discountedPrice }, quantity }) =>
-      accumulator.discountedPrice + quantity
-  );
-
-  console.log(itemsPrice);
+  const itemsPrice = itemsInBag.reduce((accumulator, currentValue) => {
+    return accumulator + currentValue.product.discountedPrice;
+  }, 0);
 
   const taxPrice = itemsPrice * 0.1;
-  const totalPrice = itemsPrice + taxPrice; */
+  const totalPrice = itemsPrice + taxPrice;
 
   function loadScript(src) {
     return new Promise((resolve) => {
@@ -45,7 +42,7 @@ export const PriceDetails = () => {
     const result = await axios.post(
       "https://yoga-store-api.suyashpradhan.repl.co/payment/orders",
       {
-        amount: "/********totalPrice*********/",
+        amount: totalPrice,
       }
     );
 
@@ -101,19 +98,15 @@ export const PriceDetails = () => {
         <h1 className="bagSummaryTitle">Price Details</h1>
         <div className="bagSummaryWrapper">
           <h2 className="bagText">Price ({itemsInBag.length} items)</h2>
-          <h2 className="bagText item-price">
-            Rs {/* {itemsPrice.toFixed(2)} */}
-          </h2>
+          <h2 className="bagText item-price">Rs {itemsPrice.toFixed(2)}</h2>
         </div>
         <div className="bagSummaryWrapper taxWrapper">
           <h2 className="bagText taxInfo">Taxes and Charges</h2>
-          <h2 className="bagText taxPrice">Rs {/* {taxPrice.toFixed(2)} */}</h2>
+          <h2 className="bagText taxPrice">Rs {taxPrice.toFixed(2)}</h2>
         </div>
         <div className="bagSummaryWrapper billWrapper">
           <h1 className="bagText totatInfo">Total Price</h1>
-          <h1 className="bagText totalAmount">
-            Rs {/* {totalPrice.toFixed(2)} */}
-          </h1>
+          <h1 className="bagText totalAmount">Rs {totalPrice.toFixed(2)}</h1>
         </div>
         <div className="">
           <button

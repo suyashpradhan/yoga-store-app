@@ -10,26 +10,19 @@
     height: auto;
     z-index: 999;
     margin: 0 auto;
-}
-
-
-.toast-success {
     background-color: var(--green);
     border: 1px solid var(--green);
-}
-
-
-.toast-error {
-    background-color: var(--danger);
-    border: 1px solid var(--danger);
+    padding: 1rem;
 }
 
 .toastMessage {
-    font-weight: 400;
+    font-weight: 500;
+    font-size: 1.1rem;
     color: var(--white);
 }
 
-.toastIcon {
-    width: .8rem;
+.toastIcons {
+    font-size: 2rem;
+    color: var(--white);
     cursor: pointer;
 }

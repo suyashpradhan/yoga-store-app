@@ -9,7 +9,6 @@ import { Link } from "react-router-dom";
 export const Bag = () => {
   const {
     state: { itemsInBag },
-    dispatch,
   } = useStateContext();
 
   return (
