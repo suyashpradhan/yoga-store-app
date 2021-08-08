@@ -1,17 +1,21 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./SignUp.css";
 import { registerUser } from "../../server-requests";
+import { useStateContext } from "../../context";
 
 export const SignUp = () => {
+  const { dispatch } = useStateContext();
+
   const [formInputs, setFormInputs] = useState({
-    firstName: "",
-    lastName: "",
+    userName: "",
+    fullName: "",
     email: "",
     password: "",
   });
   const [errors, setErrors] = useState("");
   const navigate = useNavigate();
+  const { state } = useLocation();
 
   const handleInputs = (e) => {
     setFormInputs((inputs) => {
@@ -25,18 +29,22 @@ export const SignUp = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const response = await registerUser({
-      firstName: formInputs.firstName,
-      lastName: formInputs.lastName,
+      userName: formInputs.userName,
+      fullName: formInputs.fullName,
       email: formInputs.email,
       password: formInputs.password,
     });
     console.log(response);
-    if (response.status === 201) {
+    if (response.status === 201 || response.status === 200) {
+      dispatch({
+        type: "TOGGLE_TOAST",
+        payload: "Succesfully Signed up, login with your credentials",
+      });
       setTimeout(() => {
-        navigate("/login");
+        navigate(state?.from ? state.from : "/login");
       }, 1000);
     } else {
-      console.log("Error");
+      setErrors(response.message);
     }
   };
 
@@ -44,29 +52,29 @@ export const SignUp = () => {
     <div className="loginWrapper">
       <div className="loginCard">
         <div className="loginCardBody">
-          <h1 className="loginCardHeader">Create your YogaStore account</h1>
+          <h1 className="loginCardHeader">Create your YogaLife Account</h1>
           <form onSubmit={handleSubmit}>
             <div className="formGroup">
               <label htmlFor="" className="label">
-                First name
+                Full name
               </label>
               <input
                 type="text"
                 className="formField"
-                name="firstName"
-                value={formInputs.firstName}
+                name="fullName"
+                value={formInputs.fullName}
                 onChange={handleInputs}
               />
             </div>
             <div className="formGroup">
               <label htmlFor="" className="label">
-                Last name
+                User name
               </label>
               <input
                 type="text"
                 className="formField"
-                name="lastName"
-                value={formInputs.lastName}
+                name="userName"
+                value={formInputs.userName}
                 onChange={handleInputs}
               />
             </div>
@@ -97,11 +105,10 @@ export const SignUp = () => {
                 onChange={handleInputs}
               />
             </div>
+            <p className="error-text text-center">{errors}</p>
             <button className="button button-secondary loginButton">
               Create Account
             </button>
-
-            <p>{errors}</p>
           </form>
 
           <Link to="/login" className="link registerLink">

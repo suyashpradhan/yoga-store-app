@@ -36,7 +36,7 @@ export const AddToBag = ({ product }) => {
             isLoggedIn
               ? actionOnBag(product, dispatch)
               : dispatch({
-                  type: "SHOW_TOAST",
+                  type: "TOGGLE_TOAST",
                   payload: "Please Login to add product in bag",
                 });
           }}

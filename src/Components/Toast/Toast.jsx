@@ -10,7 +10,7 @@ export const Toast = () => {
   } = useStateContext();
 
   const closeToast = () => {
-    dispatch({ type: "SHOW_TOAST", payload: null });
+    dispatch({ type: "TOGGLE_TOAST", payload: null });
   };
 
   useEffect(() => {

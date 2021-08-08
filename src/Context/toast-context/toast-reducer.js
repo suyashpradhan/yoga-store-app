@@ -1,10 +1,10 @@
 export const ACTIONS = {
-  SHOW_TOAST: "SHOW_TOAST",
+  TOGGLE_TOAST: "TOGGLE_TOAST",
 };
 
 export const toastReducer = (state, action) => {
   switch (action.type) {
-    case ACTIONS.SHOW_TOAST:
+    case ACTIONS.TOGGLE_TOAST:
       return { ...state, toastMessage: action.payload };
     default:
       return state;

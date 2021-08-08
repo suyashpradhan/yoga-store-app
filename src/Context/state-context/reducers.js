@@ -26,7 +26,7 @@ export const reducer = (state, action) => {
         itemsInBag: action.payload,
       };
 
-    case "SHOW_TOAST":
+    case "TOGGLE_TOAST":
       return { ...state, toastMessage: action.payload };
 
     case "MOVE_TO_WISHLIST":

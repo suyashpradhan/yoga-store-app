@@ -27,7 +27,7 @@ export const AddToWishlist = ({ product }) => {
           isLoggedIn
             ? actionOnUserWishlist(product, dispatch)
             : dispatch({
-                type: "SHOW_TOAST",
+                type: "TOGGLE_TOAST",
                 payload: "You need to login to add product in Wishlist ",
               });
         }}

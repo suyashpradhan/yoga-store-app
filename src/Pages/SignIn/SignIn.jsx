@@ -80,7 +80,18 @@ export const SignIn = () => {
               type="button"
               onClick={handleSubmit}
             >
-              Continue
+              Sign In
+            </button>
+            <span className="flex j-content-center pT1 pB1 a-items-center ">
+              or
+            </span>
+            <button
+              style={{ marginTop: "0" }}
+              className="button button-primary loginButton"
+              type="button"
+              onClick={handleSubmit}
+            >
+              Guest Login
             </button>
           </form>
 
