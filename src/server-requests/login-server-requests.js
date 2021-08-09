@@ -23,6 +23,7 @@ export const loginUser = async ({ userName, password }) => {
       userName,
       password,
     });
+    console.log(response);
     return response;
   } catch (error) {
     const errorResponse = JSON.stringify(error.response.data);

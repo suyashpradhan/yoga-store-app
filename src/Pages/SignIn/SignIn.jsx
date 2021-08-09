@@ -2,12 +2,14 @@ import "./SignIn.css";
 import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { loginUser } from "../../server-requests";
-import { useAuth } from "../../context/auth-context";
+import { useAuth, useStateContext } from "../../context";
 
 export const SignIn = () => {
   const { userAuthDispatch } = useAuth();
+  const { dispatch } = useStateContext();
+
   const [formInputs, setFormInputs] = useState({
-    email: "",
+    userName: "",
     password: "",
   });
   const [errors, setErrors] = useState("");
@@ -26,7 +28,7 @@ export const SignIn = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const response = await loginUser({
-      email: formInputs.email,
+      userName: formInputs.userName,
       password: formInputs.password,
     });
 
@@ -39,9 +41,12 @@ export const SignIn = () => {
         type: "SET_LOGIN",
         payload: { token: response.data.token },
       });
-      navigate(state?.from ? state.from : "/");
+      dispatch({ type: "TOGGLE_TOAST", payload: "Succesfully logged in" });
+      setTimeout(() => {
+        navigate(state?.from ? state.from : "/");
+      }, 1000);
     } else {
-      setErrors(response.data);
+      setErrors(response.message);
     }
   };
 
@@ -52,19 +57,19 @@ export const SignIn = () => {
           <h1 className="loginCardHeader">Sign in to your account</h1>
           <form action="">
             <div className="formGroup">
-              <label htmlFor="email" className="label">
-                Email
+              <label htmlFor="userName" className="label">
+                Username
               </label>
               <input
                 type="text"
                 className="formField"
                 onChange={handleInputs}
-                value={formInputs.email}
-                name="email"
+                value={formInputs.userName}
+                name="userName"
               />
             </div>
             <div className="formGroup">
-              <label htmlFor="" className="label">
+              <label htmlFor="password" className="label">
                 Password
               </label>
               <input
@@ -75,6 +80,7 @@ export const SignIn = () => {
                 name="password"
               />
             </div>
+            <h3 className="error-text">{errors}</h3>
             <button
               className="button button-secondary loginButton"
               type="button"
@@ -85,11 +91,17 @@ export const SignIn = () => {
             <span className="flex j-content-center pT1 pB1 a-items-center ">
               or
             </span>
+
             <button
               style={{ marginTop: "0" }}
               className="button button-primary loginButton"
               type="button"
-              onClick={handleSubmit}
+              onClick={() =>
+                setFormInputs(() => ({
+                  userName: "suyash123",
+                  password: "123456",
+                }))
+              }
             >
               Guest Login
             </button>

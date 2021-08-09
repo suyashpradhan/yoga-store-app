@@ -3,21 +3,22 @@
     justify-content: space-between;
     align-items: center;
     position: fixed;
-    left: 50%;
+    left: 3rem;
     bottom: 3rem;
     border-radius: .2rem;
-    width: 20rem;
+    width: 24rem;
     height: auto;
     z-index: 999;
     margin: 0 auto;
-    background-color: var(--green);
-    border: 1px solid var(--green);
+    background-color: var(--dark);
+    border: 1px solid var(--dark);
     padding: 1rem;
 }
 
 .toastMessage {
-    font-weight: 500;
-    font-size: 1.1rem;
+    font-weight: 300;
+    line-height: 1.4;
+    font-size: 1rem;
     color: var(--white);
 }
 

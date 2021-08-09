@@ -1,20 +1,17 @@
-import { useStateContext } from "../../context";
+import { useStateContext, useAuth } from "../../context";
 import wishlist from "../../assets/images/wishlist.svg";
 import wishlistFilled from "../../assets/images/wishlist-filled.svg";
 import { isAlreadyAdded } from "../../utils";
 import { actionOnUserWishlist } from "../../server-requests/index";
-import { useAuth } from "../../context/auth-context";
-import { useNavigate } from "react-router-dom";
 
 export const AddToWishlist = ({ product }) => {
   const {
     userAuthState: { isLoggedIn },
   } = useAuth();
   const {
-    state: { itemsInWishlist },
+    state: { itemsInWishlist, isLoading },
     dispatch,
   } = useStateContext();
-  const navigate = useNavigate();
 
   const isAlreadyInWishlist = isAlreadyAdded(itemsInWishlist, product._id);
 
@@ -25,7 +22,7 @@ export const AddToWishlist = ({ product }) => {
         type="button"
         onClick={() => {
           isLoggedIn
-            ? actionOnUserWishlist(product, dispatch)
+            ? actionOnUserWishlist(product, dispatch, isLoading)
             : dispatch({
                 type: "TOGGLE_TOAST",
                 payload: "You need to login to add product in Wishlist ",

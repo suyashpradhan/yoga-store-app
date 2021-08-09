@@ -14,7 +14,7 @@ export const Toast = () => {
   };
 
   useEffect(() => {
-    const timeID = setTimeout(closeToast, 3000);
+    const timeID = setTimeout(closeToast, 2000);
     return () => clearTimeout(timeID);
   });
 

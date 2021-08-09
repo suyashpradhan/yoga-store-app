@@ -8,6 +8,24 @@ export const reducer = (state, action) => {
         products: action.payload,
       };
 
+    case "LOADER_INIT":
+      return {
+        ...state,
+        isLoading: true,
+      };
+
+    case "LOADER_SUCCESS":
+      return {
+        ...state,
+        isLoading: false,
+      };
+
+    case "LOADER_FAILED":
+      return {
+        ...state,
+        isLoading: false,
+      };
+
     case "SEARCH_PRODUCT":
       return {
         ...state,

@@ -11,6 +11,7 @@ export const StateContextProvider = ({ children }) => {
     sortBy: "",
     searchedText: "",
     toastMessage: "",
+    isLoading: false,
     filters: {
       includeOutOfStock: false,
       isYogaAssured: false,

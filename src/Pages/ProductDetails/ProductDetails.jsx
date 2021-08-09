@@ -14,28 +14,28 @@ import { useStateContext } from "../../context";
 
 export const ProductDetails = () => {
   const {
-    state: { itemsInBag },
+    state: { isLoading },
+    dispatch,
   } = useStateContext();
   const [product, setProduct] = useState({});
-  const [loader, setLoader] = useState(false);
 
   const { _id } = useParams();
 
   useEffect(() => {
     (async () => {
-      setLoader(true);
+      dispatch({ type: "LOADER_INIT" });
       try {
         const response = await axios.get(`${products}/${_id}`);
         setProduct(response.data);
-        setLoader(false);
+        dispatch({ type: "LOADER_SUCCESS" });
       } catch (error) {
         console.error(error);
-        setLoader(false);
+        dispatch({ type: "LOADER_FAILED" });
       }
     })();
   }, []);
 
-  return loader ? (
+  return isLoading ? (
     <div className="loaderRow">
       <Loader type="Oval" color="#0c6ff9" height={80} width={80} />
     </div>
