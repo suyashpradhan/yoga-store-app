@@ -54,7 +54,7 @@ export const PriceDetails = () => {
     const { amount, id: order_id, currency } = result.data;
 
     const options = {
-      key: "rzp_test_7PR0eRi6seK2IP", // Enter the Key ID generated from the Dashboard
+      key: "rzp_test_7PR0eRi6seK2IP",
       amount: amount,
       currency: currency,
       name: "Suyash Pradhan",
