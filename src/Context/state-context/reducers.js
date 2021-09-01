@@ -96,27 +96,6 @@ export const reducer = (state, action) => {
         filters: { ...state.filters, includeOutOfStock: action.payload },
       };
 
-    case "FILTER_BY_CATEGORIES":
-      return state.filters.filterByCategories.includes(action.payload)
-        ? {
-            ...state,
-            filters: {
-              ...state.filters,
-              filterByCategories: state.filters.filterByCategories.filter(
-                (category) => category !== action.payload
-              ),
-            },
-          }
-        : {
-            ...state,
-            filters: {
-              ...state.filters,
-              filterByCategories: state.filters.filterByCategories.concat(
-                action.payload
-              ),
-            },
-          };
-
     case "FILTER_BY_BRANDS":
       return state.filters.filterByBrands.includes(action.payload)
         ? {
@@ -186,7 +165,6 @@ export const reducer = (state, action) => {
         filters: {
           includeOutOfStock: false,
           isYogaAssured: false,
-          filterByCategories: [],
           filterByBrands: [],
           filterByDiscounts: [],
           filterByRatings: [],

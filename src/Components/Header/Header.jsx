@@ -42,24 +42,6 @@ export const Header = () => {
               <img src={LogoMain} alt="yoga_life" className="logo"></img>
             </Link>
           </div>
-
-          <div className="navMiddle">
-            <div className="searchBox">
-              <input
-                type="text"
-                placeholder="Search Items"
-                className="searchField"
-                value={searchedText}
-                onChange={(e) =>
-                  dispatch({
-                    type: "SEARCH_PRODUCT",
-                    payload: e.target.value,
-                  })
-                }
-              />
-            </div>
-          </div>
-
           <div className="navRight ">
             {isLoggedIn ? (
               <>

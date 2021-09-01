@@ -15,7 +15,6 @@ export const StateContextProvider = ({ children }) => {
     filters: {
       includeOutOfStock: false,
       isYogaAssured: false,
-      filterByCategories: [],
       filterByBrands: [],
       filterByRatings: [],
       filterByDiscounts: [],

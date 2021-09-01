@@ -16,7 +16,7 @@ export const Home = () => {
         ></img>
       </section>
 
-      <section className="pT3 brandSection">
+      {/*  <section className="pT3 brandSection">
         <div className="wrapper-fluid">
           <div className="brands">
             <h1 className="sectionHeader">BIGGEST DEALS ON TOP BRANDS</h1>
@@ -45,7 +45,7 @@ export const Home = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
     </>
   );
 };

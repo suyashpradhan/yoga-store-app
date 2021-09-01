@@ -1,7 +1,7 @@
 import React from "react";
 import { useStateContext } from "../../context";
 
-const brands = ["Puma", "Vero Moda", "Nike", "Forever 21"];
+const brands = ["Puma", "HRX", "Adidas", "Nike", "Reebok", "Sparx"];
 
 export const Brands = () => {
   const { state, dispatch } = useStateContext();

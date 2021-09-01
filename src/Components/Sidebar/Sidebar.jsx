@@ -1,7 +1,6 @@
 import React from "react";
 import { Clear } from "./Clear";
 import { Brands } from "./Brands";
-import { Categories } from "./Categories";
 import { Availability } from "./Availability";
 import { Discounts } from "./Discounts";
 import { Ratings } from "./Ratings";
@@ -13,7 +12,6 @@ export const Sidebar = () => {
     <aside className="sidebar">
       <Clear />
       <Brands />
-      <Categories />
       <Availability />
       <Discounts />
       <Ratings />

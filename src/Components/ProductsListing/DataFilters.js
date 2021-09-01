@@ -21,11 +21,6 @@ export const getFilteredData = (state, data, searchedValue) => {
     );
   }
 
-  if (state.filters.filterByCategories.length !== 0)
-    newData = newData.filter((product) =>
-      state.filters.filterByCategories.includes(product.category)
-    );
-
   if (state.filters.filterByDiscounts.length !== 0)
     newData = newData.filter((product) =>
       state.filters.filterByDiscounts.includes(product.discount)
