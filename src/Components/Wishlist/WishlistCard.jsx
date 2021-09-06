@@ -1,5 +1,5 @@
 import React from "react";
-import { useStateContext } from "../../context";
+import { useAuth, useStateContext } from "../../context";
 import CloseButton from "../../assets/images/close.svg";
 import Star from "../../assets/images/star.svg";
 import { actionOnBag, actionOnUserWishlist } from "../../server-requests";
@@ -10,6 +10,9 @@ const itemExistsInBag = (itemsInBag, productId) =>
   itemsInBag.some((product) => product._id === productId);
 
 export const WishlistCard = ({ product }) => {
+  const {
+    userAuthState: { isLoggedIn },
+  } = useAuth();
   const {
     state: { itemsInWishlist, itemsInBag },
     dispatch,
@@ -25,7 +28,7 @@ export const WishlistCard = ({ product }) => {
         <button
           className="closeButton"
           onClick={() => {
-            actionOnUserWishlist(product, dispatch);
+            actionOnUserWishlist(product, dispatch, isLoggedIn);
           }}
         >
           <img src={CloseButton} className="icons" alt="close"></img>

@@ -16,11 +16,7 @@ export const PageRoutes = () => {
         <Route exact path="/products" element={<ProductsListing />}></Route>
         <Route exact path="/" element={<Home />}></Route>
         <Route exact path="/products/:_id" element={<ProductDetails />}></Route>
-        <PrivateRoutes
-          exact
-          path="/wishlist"
-          element={<Wishlist />}
-        ></PrivateRoutes>
+        <Route exact path="/wishlist" element={<Wishlist />}></Route>
         <PrivateRoutes exact path="/bag" element={<Bag />}></PrivateRoutes>
         <Route exact path="/login" element={<SignIn />}></Route>
         <Route exact path="/register" element={<SignUp />}></Route>

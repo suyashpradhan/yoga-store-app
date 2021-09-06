@@ -37,6 +37,7 @@ export const SignIn = () => {
         "login",
         JSON.stringify({ isLoggedIn: true, userAuthToken: response.data.token })
       );
+
       userAuthDispatch({
         type: "SET_LOGIN",
         payload: { token: response.data.token },

@@ -2,15 +2,23 @@ import React from "react";
 import { WishlistCard } from "../../components/Wishlist/WishlistCard";
 import "../../components/Wishlist/Wishlist.css";
 import EmptyWishlist from "../../assets/images/empty-wishlist.svg";
-import { useStateContext } from "../../context";
+import { useAuth, useStateContext } from "../../context";
 import { Link } from "react-router-dom";
 
 export const Wishlist = () => {
   const {
-    state: { itemsInWishlist },
+    state: { itemsInWishlist, itemsInTempWishlist },
   } = useStateContext();
 
-  const totalItemsCountInWishlist = itemsInWishlist.length;
+  console.log(itemsInTempWishlist);
+
+  const {
+    userAuthState: { isLoggedIn },
+  } = useAuth();
+
+  const totalItemsCountInWishlist = isLoggedIn
+    ? itemsInWishlist.length
+    : itemsInTempWishlist.length;
 
   return (
     <div className="wrapper wrapper-fluid">
@@ -21,9 +29,13 @@ export const Wishlist = () => {
               My Wishlist <span>({totalItemsCountInWishlist} items)</span>
             </h1>
             <div className="wishlistItem">
-              {itemsInWishlist.map((product) => (
-                <WishlistCard key={product._id} product={product} />
-              ))}
+              {!isLoggedIn
+                ? itemsInTempWishlist.map((product) => (
+                    <WishlistCard key={product._id} product={product} />
+                  ))
+                : itemsInWishlist.map((product) => (
+                    <WishlistCard key={product._id} product={product} />
+                  ))}
             </div>
           </>
         )}

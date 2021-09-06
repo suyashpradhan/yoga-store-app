@@ -78,6 +78,25 @@ export const reducer = (state, action) => {
           : state.itemsInWishlist.concat(action.payload),
       };
 
+    case "TOGGLE_TEMP_WISHLIST":
+      return {
+        ...state,
+        toastMessage: isAlreadyAdded(
+          state.itemsInTempWishlist,
+          action.payload._id
+        )
+          ? "Product Removed from Wishlist"
+          : "Product Added in Wishlist",
+        itemsInTempWishlist: isAlreadyAdded(
+          state.itemsInTempWishlist,
+          action.payload._id
+        )
+          ? state.itemsInTempWishlist.filter(
+              (product) => product._id !== action.payload._id
+            )
+          : state.itemsInTempWishlist.concat(action.payload),
+      };
+
     case "HIGH_TO_LOW":
       return {
         ...state,
@@ -157,6 +176,18 @@ export const reducer = (state, action) => {
               ),
             },
           };
+
+    case "TOGGLE_PRODUCT_TO_WISHLIST":
+      return {
+        ...state,
+        itemsInWishlist: state.itemsInWishlist.concat(action.payload),
+      };
+
+    case "TOGGLE_TO_TEMP_WISHLIST":
+      return {
+        ...state,
+        itemsInTempWishlist: state.itemsInTempWishlist.concat(action.payload),
+      };
 
     case "CLEAR_FILTER":
       return {

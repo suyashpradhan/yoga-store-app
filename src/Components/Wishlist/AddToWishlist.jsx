@@ -9,11 +9,22 @@ export const AddToWishlist = ({ product }) => {
     userAuthState: { isLoggedIn },
   } = useAuth();
   const {
-    state: { itemsInWishlist, isLoading },
+    state: { itemsInWishlist, itemsInTempWishlist, isLoading },
     dispatch,
   } = useStateContext();
 
-  const isAlreadyInWishlist = isAlreadyAdded(itemsInWishlist, product._id);
+  const isAlreadyInWishlist = isAlreadyAdded(
+    [...itemsInWishlist, ...itemsInTempWishlist],
+    product._id
+  );
+
+  const addProductToLocalStorage = (product) => {
+    if (isLoggedIn) {
+      dispatch({ type: "TOGGLE_PRODUCT_TO_WISHLIST", payload: product });
+    } else {
+      dispatch({ type: "TOGGLE_TO_TEMP_WISHLIST", payload: product });
+    }
+  };
 
   return (
     <>
@@ -25,8 +36,9 @@ export const AddToWishlist = ({ product }) => {
             ? actionOnUserWishlist(product, dispatch, isLoading)
             : dispatch({
                 type: "TOGGLE_TOAST",
-                payload: "You need to login to add product in Wishlist ",
+                payload: "Added to wishlist ",
               });
+          addProductToLocalStorage(product);
         }}
       >
         {isAlreadyInWishlist ? (

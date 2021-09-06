@@ -9,7 +9,7 @@ import { useAuth } from "../../context/";
 
 export const Header = () => {
   const {
-    state: { itemsInBag, searchedText },
+    state: { itemsInBag },
     dispatch,
   } = useStateContext();
 
@@ -77,6 +77,9 @@ export const Header = () => {
                 </Link>
                 <Link to="/products">
                   <h2 className="iconText mR1">Products</h2>
+                </Link>
+                <Link to="/wishlist">
+                  <h2 className="iconText mR1">Wishlist</h2>
                 </Link>
                 <Link to="/login" className="actionButtons">
                   Sign in
