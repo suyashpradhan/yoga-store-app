@@ -1,5 +1,4 @@
-import React from "react";
-import { useStateContext } from "../../context";
+import React from 'react';
 
 export const Availability = () => {
   const { state, dispatch } = useStateContext();
@@ -12,11 +11,10 @@ export const Availability = () => {
           checked={state.filters.includeOutOfStock}
           onChange={() => {
             dispatch({
-              type: "INCLUDE_OUT_OF_STOCK",
-              payload: !state.filters.includeOutOfStock,
+              type: 'INCLUDE_OUT_OF_STOCK',
+              payload: !state.filters.includeOutOfStock
             });
-          }}
-        ></input>
+          }}></input>
         <label htmlFor="">Include Out of Stock</label>
       </div>
     </div>

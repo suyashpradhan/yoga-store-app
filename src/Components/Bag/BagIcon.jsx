@@ -1,5 +1,4 @@
-import React from "react";
-import { useStateContext } from "../../context";
+import React from 'react';
 
 export const BagIcon = (props) => {
   console.log(props.product);
@@ -9,10 +8,7 @@ export const BagIcon = (props) => {
     <div className="cardFooter block">
       <button
         className="button button-secondary"
-        onClick={() =>
-          dispatch({ type: "ADD_TO_BAG", payload: props.product, route: "BAG" })
-        }
-      >
+        onClick={() => dispatch({ type: 'ADD_TO_BAG', payload: props.product, route: 'BAG' })}>
         Add to Bag
       </button>
     </div>

@@ -1,5 +1,4 @@
-import React from "react";
-import { useStateContext } from "../../context";
+import React from 'react';
 
 const discounts = [10, 20, 50, 70];
 
@@ -16,9 +15,8 @@ export const Discounts = () => {
                 type="checkbox"
                 checked={state.filters.filterByDiscounts.includes(discount)}
                 onChange={() => {
-                  dispatch({ type: "FILTER_BY_DISCOUNTS", payload: discount });
-                }}
-              ></input>
+                  dispatch({ type: 'FILTER_BY_DISCOUNTS', payload: discount });
+                }}></input>
               <label>{discount} % or more</label>
             </div>
           );

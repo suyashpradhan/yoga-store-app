@@ -1,8 +1,0 @@
-Wishlist to be synced after logging
-
-Store to localStorage
-get product from LS
-remove from LS
-after logging sync the wishlist
-
-

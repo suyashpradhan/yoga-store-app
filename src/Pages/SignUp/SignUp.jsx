@@ -1,19 +1,18 @@
-import { useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import "./SignUp.css";
-import { registerUser } from "../../server-requests";
-import { useStateContext } from "../../context";
+import { useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import './SignUp.css';
+import { registerUser } from '../../server-requests';
 
 export const SignUp = () => {
   const { dispatch } = useStateContext();
 
   const [formInputs, setFormInputs] = useState({
-    userName: "",
-    fullName: "",
-    email: "",
-    password: "",
+    userName: '',
+    fullName: '',
+    email: '',
+    password: ''
   });
-  const [errors, setErrors] = useState("");
+  const [errors, setErrors] = useState('');
   const navigate = useNavigate();
   const { state } = useLocation();
 
@@ -21,7 +20,7 @@ export const SignUp = () => {
     setFormInputs((inputs) => {
       return {
         ...inputs,
-        [e.target.name]: e.target.value,
+        [e.target.name]: e.target.value
       };
     });
   };
@@ -32,16 +31,16 @@ export const SignUp = () => {
       userName: formInputs.userName,
       fullName: formInputs.fullName,
       email: formInputs.email,
-      password: formInputs.password,
+      password: formInputs.password
     });
     console.log(response);
     if (response.status === 201 || response.status === 200) {
       dispatch({
-        type: "TOGGLE_TOAST",
-        payload: "Succesfully Signed up, login with your credentials",
+        type: 'TOGGLE_TOAST',
+        payload: 'Succesfully Signed up, login with your credentials'
       });
       setTimeout(() => {
-        navigate(state?.from ? state.from : "/login");
+        navigate(state?.from ? state.from : '/login');
       }, 1000);
     } else {
       setErrors(response.message);
@@ -80,7 +79,7 @@ export const SignUp = () => {
             </div>
             <div className="formGroup">
               <label htmlFor="" className="label">
-                {" "}
+                {' '}
                 Email
               </label>
               <input
@@ -94,7 +93,7 @@ export const SignUp = () => {
 
             <div className="formGroup">
               <label htmlFor="" className="label">
-                {" "}
+                {' '}
                 Password
               </label>
               <input
@@ -106,9 +105,7 @@ export const SignUp = () => {
               />
             </div>
             <p className="error-text text-center">{errors}</p>
-            <button className="button button-secondary loginButton">
-              Create Account
-            </button>
+            <button className="button button-secondary loginButton">Create Account</button>
           </form>
 
           <Link to="/login" className="link registerLink">

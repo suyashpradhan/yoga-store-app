@@ -1,14 +1,14 @@
-import React from "react";
-import "../../components/Bag/Bag.css";
-import EmptyBag from "../../assets/images/empty-bag.svg";
-import { useStateContext } from "../../context";
-import { BagCard } from "../../components/Bag/BagCard";
-import { PriceDetails } from "../../components/Checkout";
-import { Link } from "react-router-dom";
+import React from 'react';
+import '../../components/Bag/Bag.css';
+import EmptyBag from '../../assets/images/empty-bag.svg';
+
+import { BagCard } from '../../components/Bag/BagCard';
+import { PriceDetails } from '../../components/Checkout';
+import { Link } from 'react-router-dom';
 
 export const Bag = () => {
   const {
-    state: { itemsInBag },
+    state: { itemsInBag }
   } = useStateContext();
 
   return (
@@ -33,13 +33,9 @@ export const Bag = () => {
           <>
             <img src={EmptyBag} alt="empty-bag" className="secondaryIcon"></img>
             <h1 className="bagMainTitle">YOUR BAG IS EMPTY</h1>
-            <p className="bagSubTitle">
-              There is nothing in your bag. Let's add some items
-            </p>
+            <p className="bagSubTitle">There is nothing in your bag. Let's add some items</p>
             <Link to="/products">
-              <button className="button button-secondary">
-                Start Shopping
-              </button>
+              <button className="button button-secondary">Start Shopping</button>
             </Link>
           </>
         )}
