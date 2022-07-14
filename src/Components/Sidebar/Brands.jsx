@@ -1,7 +1,6 @@
-import React from "react";
-import { useStateContext } from "../../context";
+import React from 'react';
 
-const brands = ["Puma", "HRX", "Adidas", "Nike", "Reebok", "Sparx"];
+const brands = ['Puma', 'HRX', 'Adidas', 'Nike', 'Reebok', 'Sparx'];
 
 export const Brands = () => {
   const { state, dispatch } = useStateContext();
@@ -16,9 +15,8 @@ export const Brands = () => {
                 type="checkbox"
                 checked={state.filters.filterByBrands.includes(brand)}
                 onChange={() => {
-                  dispatch({ type: "FILTER_BY_BRANDS", payload: brand });
-                }}
-              ></input>
+                  dispatch({ type: 'FILTER_BY_BRANDS', payload: brand });
+                }}></input>
               <label>{brand}</label>
             </div>
           );

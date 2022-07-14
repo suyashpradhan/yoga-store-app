@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { Product } from "./Product";
-import "./ProductsListing.css";
-import { useStateContext } from "../../context";
-import { Sort } from "./Sort";
-import { Sidebar } from "../Sidebar/";
-import Loader from "react-loader-spinner";
-import { getFilteredData, getSortedData } from "./DataFilters";
-import axios from "axios";
-import { products } from "../../API/URL";
+import React, { useEffect, useState } from 'react';
+import { Product } from './Product';
+import './ProductsListing.css';
+
+import { Sort } from './Sort';
+import { Sidebar } from '../Sidebar/';
+import Loader from 'react-loader-spinner';
+import { getFilteredData, getSortedData } from './DataFilters';
+import axios from 'axios';
+import { products } from '../../API/URL';
 
 export const ProductsListing = () => {
   const { state, dispatch } = useStateContext();
@@ -18,7 +18,7 @@ export const ProductsListing = () => {
       setLoader(true);
       try {
         const response = await axios.get(products);
-        dispatch({ type: "SHOW_PRODUCTS", payload: response.data });
+        dispatch({ type: 'SHOW_PRODUCTS', payload: response.data });
         setLoader(false);
       } catch (error) {
         console.log(error);

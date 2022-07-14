@@ -1,11 +1,11 @@
-import React from "react";
-import "../Bag/Bag.css";
-import { useStateContext } from "../../context";
-import axios from "axios";
+import React from 'react';
+import '../Bag/Bag.css';
+
+import axios from 'axios';
 
 export const PriceDetails = () => {
   const {
-    state: { itemsInBag },
+    state: { itemsInBag }
   } = useStateContext();
 
   const itemsPrice = itemsInBag.reduce((accumulator, currentValue) => {
@@ -17,7 +17,7 @@ export const PriceDetails = () => {
 
   function loadScript(src) {
     return new Promise((resolve) => {
-      const script = document.createElement("script");
+      const script = document.createElement('script');
       script.src = src;
       script.onload = () => {
         resolve(true);
@@ -30,62 +30,57 @@ export const PriceDetails = () => {
   }
 
   async function displayRazorpay() {
-    const res = await loadScript(
-      "https://checkout.razorpay.com/v1/checkout.js"
-    );
+    const res = await loadScript('https://checkout.razorpay.com/v1/checkout.js');
 
     if (!res) {
-      alert("Razorpay SDK failed to load. Are you online?");
+      alert('Razorpay SDK failed to load. Are you online?');
       return;
     }
 
-    const result = await axios.post(
-      "https://yoga-store-api.suyashpradhan.repl.co/payment/orders",
-      {
-        amount: totalPrice,
-      }
-    );
+    const result = await axios.post('https://yoga-store-api.suyashpradhan.repl.co/payment/orders', {
+      amount: totalPrice
+    });
 
     if (!result) {
-      alert("Server error. Are you online?");
+      alert('Server error. Are you online?');
       return;
     }
 
     const { amount, id: order_id, currency } = result.data;
 
     const options = {
-      key: "rzp_test_7PR0eRi6seK2IP",
+      key: 'rzp_test_7PR0eRi6seK2IP',
       amount: amount,
       currency: currency,
-      name: "Suyash Pradhan",
-      description: "Test Transaction",
+      name: 'Suyash Pradhan',
+      description: 'Test Transaction',
       order_id: order_id,
       handler: async function (response) {
         const data = {
           orderCreationId: order_id,
           razorpayPaymentId: response.razorpay_payment_id,
           razorpayOrderId: response.razorpay_order_id,
-          razorpaySignature: response.razorpay_signature,
+          razorpaySignature: response.razorpay_signature
         };
 
         const result = await axios.post(
-          "https://yoga-store-api.suyashpradhan.repl.co/payment/orders",
+          'https://yoga-store-api.suyashpradhan.repl.co/payment/orders',
           data
         );
 
         alert(result.data.msg);
       },
       prefill: {
-        name: "Suyash Pradhan",
-        email: "suyash@example.com",
-        contact: "9999999999",
+        name: 'Suyash Pradhan',
+        email: 'suyash@example.com',
+        contact: '9999999999'
       },
       notes: {
-        address: "Suyash Pradhan Corporate Office",
+        address: 'Suyash Pradhan Corporate Office'
       },
       theme: {
-        color: "#0c6ff9",
-      },
+        color: '#0c6ff9'
+      }
     };
 
     const paymentObject = new window.Razorpay(options);
@@ -109,10 +104,7 @@ export const PriceDetails = () => {
           <h1 className="bagText totalAmount">Rs {totalPrice.toFixed(2)}</h1>
         </div>
         <div className="">
-          <button
-            className="button w-100 mT1 block button-secondary"
-            onClick={displayRazorpay}
-          >
+          <button className="button w-100 mT1 block button-secondary" onClick={displayRazorpay}>
             CHECKOUT
           </button>
         </div>
